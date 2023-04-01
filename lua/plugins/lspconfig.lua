@@ -37,7 +37,7 @@ return {
             vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, bufopts)
             vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set('n', '<space>lR', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', 'gr', function() vim.cmd[[Telescope lsp_references]] end, bufopts)
             vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = false, timeout=2000 } end, bufopts)
             vim.keymap.set('n', '<space>l=', function() vim.lsp.formatexpr() end, bufopts)
         end
