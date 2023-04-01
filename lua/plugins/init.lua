@@ -29,6 +29,15 @@ return {
         },
     },
 
+    -- c++ utils
+    {
+        "Badhi/nvim-treesitter-cpp-tools",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        },
+        config = true,
+    },
+
     -- Add colors to funciton agruments
     {
         'm-demare/hlargs.nvim',

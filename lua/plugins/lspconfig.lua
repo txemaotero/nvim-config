@@ -57,7 +57,12 @@ return {
         -- use a loop to conveniently call 'setup' on multiple servers and
         -- map buffer local keybindings when the language server attaches
         nvim_lsp.clangd.setup{
-            on_attach = on_attach,
+            on_attach = function (client, bufnr)
+                on_attach(client, bufnr)
+                local bufopts = { noremap=true, silent=true, buffer=bufnr }
+                vim.keymap.set({'n', 'v'}, '<space>li', function() vim.cmd[[TSCppDefineClassFunc]] end, bufopts)
+                vim.keymap.set('n', '<space>ls', function() vim.cmd[[ClangdSwitchSourceHeader]] end, bufopts)
+            end,
             capabilities = capabilities
         }
 
