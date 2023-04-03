@@ -12,4 +12,3 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = {"text", "latex", "markdown", "vimwiki"},
     callback = TodoCheck
 })
-

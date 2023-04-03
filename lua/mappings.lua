@@ -23,6 +23,13 @@ M.special_help = {
     }
 }
 
+M.quickfix = {
+    mappings = {
+        ["<CR>"] = {"<cmd>.cc<cr><cmd>copen<cr>", "View current"},
+        o = {"<cmd>.cc<cr><cmd>cclose<cr>",       "Jump current"},
+    }
+}
+
 -- Special yang
 vim.keymap.set({"n","x"}, "y", "<Plug>(YankyYank)")
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
@@ -41,6 +48,11 @@ vim.keymap.set("n", "-", function() ui.nav_file(2) end)
 vim.keymap.set("n", "<C-ñ>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-t>", function() ui.nav_file(4) end)
 
+-- Copy to clipboard
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>D", [["_d]])
 
 M.general = {
     mappings = {
@@ -81,7 +93,7 @@ M.terminal = {
         ["<C-F>"] = {"<Right>",     "Right"},
         ["<C-N>"] = {"<Down>",      "Down"},
         ["<C-P>"] = {"<Up>",        "Up"},
-        ["<Esc>"] = {"<C-\\><C-n>", "Esc"},
+        ["<Esc>"] = {"fd", "Esc"},
     },
     opts = {mode = "t"}
 }
@@ -206,7 +218,7 @@ M.leader_debug = {
 M.leader_file = {
     mappings = {
         name = "+File",
-        f = { "<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>", "Find File" },
+        f = { "<cmd>Telescope find_files<cr>", "Find File" },
         r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
         s = { "<cmd>w<cr>", "Save" },
         S = { "<cmd>wall<cr>", "Save all" },
@@ -289,7 +301,7 @@ M.leader_neorg = {
             s = { "<cmd>Telescope neorg find_project_tasks<cr>", "Find tasks"},
             t = {"<cmd>Neorg workspace gtd<cr>", "Tasks"},
         },
-        p = {"<cmd>Neorg workspace personal<cr>", "Personal"},
+        w = {"<cmd>Neorg workspace work<cr>", "Work"},
         l = { "<cmd>Telescope neorg insert_link<cr>", "New link"},
         s = { "<cmd>Telescope neorg find_linkable<cr>", "Find link"},
         f = { "<cmd>Telescope neorg insert_file_link<cr>", "File link"},
@@ -368,6 +380,15 @@ M.packer = {
         u = {"<cmd>PackerUpdate<cr>", "Install"},
     },
     opts = {prefix = "<leader>p"}
+}
+
+M.overseer = {
+    mappings = {
+      name = "+Overseer",
+      o = {"<cmd>OverseerRun<cr>", "Run task"},
+      t = {"<cmd>OverseerToggle<cr>", "Toggle"},
+    },
+    opts = {prefix = "<leader>o"}
 }
 
 M.leader_test = {
