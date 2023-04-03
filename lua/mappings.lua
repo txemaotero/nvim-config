@@ -1,10 +1,5 @@
 local M = {}
 
-local function pyflyby_add_imports()
-    os.execute("tidy-imports --black --quiet --replace-star-imports --action REPLACE " .. vim.fn.expand("%"))
-    vim.cmd("e")
-end
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     callback = function()
@@ -278,7 +273,6 @@ M.leader_lsp = {
         f = "Format file",
         r = "Rename",
         a = "Action",
-        i = { pyflyby_add_imports, "Add imports (py)" },
         D = "Diagnostics",
         d = {
             name = "+Document",
