@@ -29,8 +29,7 @@ return {
                 ["core.norg.dirman"] = {
                     config = {
                         workspaces = {
-                            personal = "~/google_drive/notas/personal/",
-                            gtd = "~/google_drive/notas/gtd/",
+                            work = "C:\\Users\\josote3651\\OneDrive - CTAG\\Documentos\\notas",
                         }
                     }
                 },

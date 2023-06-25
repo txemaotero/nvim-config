@@ -50,6 +50,13 @@ return {
                         wk.register(val.mappings, {buffer = vim.api.nvim_get_current_buf()})
                     end,
                 })
+            elseif key == "quickfix" then
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = "qf",
+                    callback = function()
+                        wk.register(val.mappings, {buffer = vim.api.nvim_get_current_buf()})
+                    end,
+                })
             elseif val.opts then
                 wk.register(val.mappings, val.opts)
             else

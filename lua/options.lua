@@ -1,6 +1,6 @@
 -- Leader to space
 vim.g.mapleader = " "
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
 -- Mouse control
@@ -33,6 +33,7 @@ vim.opt.undodir = os.getenv("UserProfile") .. "/.nvim/undodir"
 -- Spell and text related
 vim.opt.spelllang = {"en", "es"}
 vim.opt.spellsuggest = {"best", 9}
+vim.opt.spell = true
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"text", "latex", "markdown", "vimwiki", "norg"},
     callback = function()
@@ -40,6 +41,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.tw = 80
         vim.opt_local.conceallevel = 2
         vim.cmd[[hi! SpellBad guifg=#9c3838]]
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"c", "cpp"},
+    callback = function()
+        vim.opt_local.tw = 120
+        vim.opt_local.spell = true
     end,
 })
 
