@@ -26,9 +26,13 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Term colors
 vim.opt.termguicolors = true
 
-
+-- Undo persist
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("UserProfile") .. "/.nvim/undodir"
+if vim.fn.has('macunix') == 0 then
+    vim.opt.undodir = os.getenv("UserProfile") .. "/.nvim/undodir"
+else
+    vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+end
 
 -- Spell and text related
 vim.opt.spelllang = {"en", "es"}
@@ -37,17 +41,16 @@ vim.opt.spell = true
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"text", "latex", "markdown", "vimwiki", "norg"},
     callback = function()
-        vim.opt_local.spell = true
         vim.opt_local.tw = 80
         vim.opt_local.conceallevel = 2
         vim.cmd[[hi! SpellBad guifg=#9c3838]]
     end,
 })
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"c", "cpp"},
     callback = function()
         vim.opt_local.tw = 120
-        vim.opt_local.spell = true
     end,
 })
 
@@ -56,7 +59,7 @@ vim.opt.ruler = true
 vim.opt.cursorline = true
 vim.opt.linebreak = true
 
--- Number of lines bellow
+-- Lines to end of window
 vim.opt.scrolloff = 10
 
 -- Indentation
@@ -68,7 +71,6 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.list = true
 vim.opt.listchars = "tab:->,trail:·"
-
 
 -- Best search
 vim.opt.incsearch = true
