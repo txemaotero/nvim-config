@@ -37,32 +37,7 @@ return {
 
         -- WhichKeyFloat transparent background
         vim.cmd("highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK")
-
-        local wk = require("which-key")
-
-        local mappings = require("mappings")
-
-        for key, val in pairs(mappings) do
-            if key == "special_help" then
-                vim.api.nvim_create_autocmd("FileType", {
-                    pattern = "help",
-                    callback = function()
-                        wk.register(val.mappings, {buffer = vim.api.nvim_get_current_buf()})
-                    end,
-                })
-            elseif key == "quickfix" then
-                vim.api.nvim_create_autocmd("FileType", {
-                    pattern = "qf",
-                    callback = function()
-                        wk.register(val.mappings, {buffer = vim.api.nvim_get_current_buf()})
-                    end,
-                })
-            elseif val.opts then
-                wk.register(val.mappings, val.opts)
-            else
-                wk.register(val.mappings)
-            end
-        end
+        require("mappings")
     end
 }
 

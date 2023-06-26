@@ -1,7 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
         vim.keymap.set('n', '<space>ld', vim.diagnostic.open_float, opts)
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
         vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -14,15 +14,15 @@ return {
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
             -- vim.api.nvim_create_autocmd('LspAttach', {
             --     callback = function (args)
-                --     vim.bo[args.buf].formatexpr = nil
-                --         vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
-                -- end,
+            --     vim.bo[args.buf].formatexpr = nil
+            --         vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
+            -- end,
             -- })
 
             -- vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
             -- Mappings.
             -- See `:help vim.lsp.*` for documentation on any of the below functions
-            local bufopts = { noremap=true, silent=true, buffer=bufnr }
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
             vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
@@ -37,8 +37,8 @@ return {
             vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, bufopts)
             vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set('n', 'gr', function() vim.cmd[[Telescope lsp_references]] end, bufopts)
-            vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = false, timeout=3000 } end, bufopts)
+            vim.keymap.set('n', 'gr', function() vim.cmd [[Telescope lsp_references]] end, bufopts)
+            vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = false, timeout = 2000 } end, bufopts)
             vim.keymap.set('n', '<space>l=', function() vim.lsp.formatexpr() end, bufopts)
         end
 
@@ -56,10 +56,10 @@ return {
 
         -- use a loop to conveniently call 'setup' on multiple servers and
         -- map buffer local keybindings when the language server attaches
-        nvim_lsp.clangd.setup{
-            on_attach = function (client, bufnr)
+        nvim_lsp.clangd.setup {
+            on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
-                local bufopts = { noremap=true, silent=true, buffer=bufnr }
+                local bufopts = { noremap = true, silent = true, buffer = bufnr }
                 vim.keymap.set('n', '<space>ls', "<cmd>ClangdSwitchSourceHeader<cr>", bufopts)
                 vim.keymap.set({'n', 'v'}, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
             end,
@@ -71,7 +71,7 @@ return {
             single_file_support = true,
         }
 
-        nvim_lsp.rust_analyzer.setup{
+        nvim_lsp.rust_analyzer.setup {
             on_attach = on_attach,
             flags = {
                 debounce_text_changes = 150,
@@ -82,6 +82,7 @@ return {
         }
 
         nvim_lsp.lua_ls.setup {
+            on_attach = on_attach,
             settings = {
                 Lua = {
                     runtime = {
@@ -90,7 +91,7 @@ return {
                     },
                     diagnostics = {
                         -- Get the language server to recognize the `vim` global
-                        globals = {'vim'},
+                        globals = { 'vim' },
                     },
                     workspace = {
                         -- Make the server aware of Neovim runtime files
