@@ -16,17 +16,17 @@ return {
             load = {
                 ["core.defaults"] = {},
                 ["core.integrations.telescope"] = {},
-                ["core.norg.concealer"] = {
+                ["core.concealer"] = {
                     config = {
                         folds = false,
                     }
                 },
-                ["core.norg.completion"] = {
+                ["core.completion"] = {
                     config = {
                         engine = "nvim-cmp"
                     },
                 },
-                ["core.norg.dirman"] = {
+                ["core.dirman"] = {
                     config = {
                         workspaces = {
                             work = "C:\\Users\\josote3651\\OneDrive - CTAG\\Documentos\\notas",

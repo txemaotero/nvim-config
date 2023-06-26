@@ -25,7 +25,8 @@ M.quickfix = {
     }
 }
 
--- Special yang
+vim.keymap.set({"n", "x"}, "<C-Z>", "<Nop>")
+-- Special yank
 vim.keymap.set({"n","x"}, "y", "<Plug>(YankyYank)")
 vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
@@ -40,7 +41,7 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 vim.keymap.set("n", "+", function() ui.nav_file(1) end)
 vim.keymap.set("n", "-", function() ui.nav_file(2) end)
-vim.keymap.set("n", "<C-ñ>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-s>", function() ui.nav_file(3) end)
 vim.keymap.set("n", "<C-t>", function() ui.nav_file(4) end)
 
 -- Copy to clipboard
@@ -88,7 +89,6 @@ M.terminal = {
         ["<C-F>"] = {"<Right>",     "Right"},
         ["<C-N>"] = {"<Down>",      "Down"},
         ["<C-P>"] = {"<Up>",        "Up"},
-        ["<Esc>"] = {"fd", "Esc"},
     },
     opts = {mode = "t"}
 }
@@ -99,7 +99,7 @@ M.leader_root = {
         ["<Tab>"] = { "<cmd>b#<cr>",              "Alternate buffer" },
         ["."] = { "<cmd>e $MYVIMRC<cr>",          "Open config" },
         [";"] = { "<cmd>Telescope commands<cr>",  "Commands" },
-        e = { "<cmd>Oil<cr>",                     "Explorer" },
+        e = { "<cmd>edit %:p:h<cr>",                     "Explorer" },
         H = { "<C-W>s",                           "Split below" },
         m = { require("harpoon.mark").add_file,   "Add file to harpoon" },
         N = { "<cmd>let @/ = ''<cr>",             "No highlight" },
@@ -115,10 +115,10 @@ M.leader_buffer = {
         d = { "<cmd>bd<cr>",                  "Delete" },
         f = { "<cmd>bfirst<cr>",              "First" },
         l = { "<cmd>blast<cr>",               "Last" },
-        n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-        p = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-        b = { "<cmd>BufferLinePick<cr>",      "Pick" },
-        B = { "<cmd>Telescope buffers<cr>",   "Telescope find" },
+        -- n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+        -- p = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+        -- b = { "<cmd>BufferLinePick<cr>",      "Pick" },
+        b = { "<cmd>Telescope buffers<cr>",   "Telescope find" },
     },
     opts = {prefix = "<leader>b"}
 }
@@ -227,7 +227,10 @@ M.leader_git = {
         name = "+Git",
         B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all" },
         b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
+        g = { "<cmd>G<cr>", "Git" },
         s = { "<cmd>Git status<cr>", "Status" },
+        j = { "<cmd>diffget //3<cr>", "Get right" },
+        f = { "<cmd>diffget //2<cr>", "Get left" },
         t = { "<cmd>FloatermNew lazygit<cr>", "Lazygit" },
         m = "Messenger",
         v = { "<cmd>GV<cr>", "View log" },
@@ -381,6 +384,9 @@ M.overseer = {
       name = "+Overseer",
       o = {"<cmd>OverseerRun<cr>", "Run task"},
       t = {"<cmd>OverseerToggle<cr>", "Toggle"},
+      l = {"<cmd>OverseerRestartLast<cr>", "Run last"},
+      s = {"<cmd>OverseerOpenLastOutput<cr>", "Show last output"},
+
     },
     opts = {prefix = "<leader>o"}
 }

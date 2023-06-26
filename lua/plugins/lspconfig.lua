@@ -38,7 +38,7 @@ return {
             vim.keymap.set('n', '<space>lr', vim.lsp.buf.rename, bufopts)
             vim.keymap.set('n', '<space>la', vim.lsp.buf.code_action, bufopts)
             vim.keymap.set('n', 'gr', function() vim.cmd[[Telescope lsp_references]] end, bufopts)
-            vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = false, timeout=2000 } end, bufopts)
+            vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = false, timeout=3000 } end, bufopts)
             vim.keymap.set('n', '<space>l=', function() vim.lsp.formatexpr() end, bufopts)
         end
 
@@ -61,12 +61,14 @@ return {
                 on_attach(client, bufnr)
                 local bufopts = { noremap=true, silent=true, buffer=bufnr }
                 vim.keymap.set('n', '<space>ls', "<cmd>ClangdSwitchSourceHeader<cr>", bufopts)
+                vim.keymap.set({'n', 'v'}, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
             end,
             capabilities = capabilities
         }
 
         nvim_lsp.pyright.setup {
             on_attach = on_attach,
+            single_file_support = true,
         }
 
         nvim_lsp.rust_analyzer.setup{

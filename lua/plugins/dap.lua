@@ -30,5 +30,30 @@ return {
                 program = "${file}"; -- This configuration will launch the current file if used.
             },
         }
+
+        dap.adapters.cppdbg = {
+            id = 'cppdbg',
+            type = 'executable',
+            command = 'C:\\Users\\josote3651\\Desktop\\programas\\cpptools-extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+            options = {
+                detached = false
+            }
+        }
+
+        dap.configurations.cpp = {
+            {
+                name = "(Windows) ldpApp Debug",
+                type = "cppdbg",
+                request = "launch",
+                program = "C:\\Users\\josote3651\\Desktop\\repos\\lidar_processing_newArch\\bin\\ldpApp\\win64_vc141\\withGraphics\\notLogPerformance\\Debug\\ldpAppD.exe",
+                stopAtEntry = false,
+                cwd = "C:\\Users\\josote3651\\Desktop\\repos\\lidar_processing_newArch\\bin\\ldpApp\\win64_vc141\\withGraphics\\notLogPerformance\\Debug",
+                -- cwd = '${workspaceFolder}',
+                externalConsole = true,
+                MIMode = "gdb",
+                MIDebuggerPath = "gdb.exe"
+            },
+        }
+
     end
 }

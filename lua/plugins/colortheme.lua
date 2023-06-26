@@ -1,6 +1,7 @@
 -- Dracula theme
 return {
     'Mofiqul/dracula.nvim',
+    cond=false,
     lazy = false,
     priority = 2000,
     config = function()

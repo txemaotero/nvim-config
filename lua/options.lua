@@ -88,3 +88,7 @@ vim.opt.inccommand = "nosplit"
 if vim.fn.executable("rg") == 1 then
     vim.opt.grepprg = "rg --vimgrep"
 end
+
+-- Disable netrw to use Oil
+vim.g.loaded_netrw       = 1
+vim.g.loaded_netrwPlugin = 1

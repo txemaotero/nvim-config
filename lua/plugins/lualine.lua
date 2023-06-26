@@ -60,7 +60,15 @@ return {
                 lualine_z = {},
                 -- These will be filled later
                 lualine_c = {},
-                lualine_x = {},
+                lualine_x = { {
+                    "overseer",
+                    symbols = {
+                        [require("overseer").STATUS.FAILURE] = " ",
+                        [require("overseer").STATUS.CANCELED] = " ",
+                        [require("overseer").STATUS.SUCCESS] = " ",
+                        [require("overseer").STATUS.RUNNING] = " ",
+                    }
+                } },
             },
             inactive_sections = {
                 -- these are to remove the defaults
