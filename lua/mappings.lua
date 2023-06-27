@@ -1,5 +1,7 @@
 local wk = require("which-key")
 
+vim.keymap.set({"n", "x"}, "<C-Z>", "<Nop>")
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     callback = function()
@@ -70,7 +72,7 @@ wk.register(
 wk.register(
     {
         ["<C-j>"] = { ":m '>+1<CR>gv=gv", "Move down" },
-        ["<C-k>"] = { ":m '>-2<CR>gv=gv", "Move up" },
+        ["<C-k>"] = { ":m '<-2<CR>gv=gv", "Move up" },
     },
     {
         mode = "v"
@@ -114,7 +116,7 @@ wk.register(
             ["<Tab>"] = { "<cmd>b#<cr>", "Alternate buffer" },
             ["."] = { "<cmd>e $MYVIMRC<cr>", "Open config" },
             [";"] = { "<cmd>Telescope commands<cr>", "Commands" },
-            e = { "<cmd>Oil<cr>", "Explorer" },
+            e = { "<cmd>edit %:p:h<cr>", "Explorer" },
             H = { "<C-W>s", "Split below" },
             m = { require("harpoon.mark").add_file, "Add file to harpoon" },
             N = { "<cmd>let @/ = ''<cr>", "No highlight" },

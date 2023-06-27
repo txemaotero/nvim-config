@@ -19,6 +19,7 @@ return {
         require("telescope").setup({
             defaults = {
                 path_display={"truncate"},
+                dynamic_preview_title=true,
             },
             pickers = {
                 buffers = {
@@ -31,7 +32,7 @@ return {
                         }
                     }
                 }
-            }
+            },
         })
     end
 }
