@@ -5,7 +5,10 @@ return {
     -- Git commit browser (:GV)
     'junegunn/gv.vim',
     -- Git diff simbols on number column
-    'lewis6991/gitsigns.nvim',
+    {
+        'lewis6991/gitsigns.nvim',
+        config = true,
+    },
     -- Shows git commits under the cursor (leader gm)
     'rhysd/git-messenger.vim',
     -- Easy managements of worktrees (remember to clone with --bare)

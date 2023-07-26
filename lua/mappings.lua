@@ -1,18 +1,18 @@
 local wk = require("which-key")
 
-vim.keymap.set({"n", "x"}, "<C-Z>", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<C-Z>", "<Nop>")
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     callback = function()
         wk.register({
-                ["<CR>"] = { "<C-]>", "Follow link" },
-                ["<BS>"] = { "<C-T>", "Go back" },
-                o        = { "/'\\l\\{2,\\}'<CR>", "Next option" },
-                O        = { "?'\\l\\{2,\\}'<CR>", "Prev. option" },
-                s        = { "/|.\\{-}|<CR>", "Next subject" },
-                S        = { "?|.\\{-}|<CR>", "Prev. subject" },
-            },
+            ["<CR>"] = { "<C-]>", "Follow link" },
+            ["<BS>"] = { "<C-T>", "Go back" },
+            o        = { "/'\\l\\{2,\\}'<CR>", "Next option" },
+            O        = { "?'\\l\\{2,\\}'<CR>", "Prev. option" },
+            s        = { "/|.\\{-}|<CR>", "Next subject" },
+            S        = { "?|.\\{-}|<CR>", "Prev. subject" },
+        },
             { buffer = vim.api.nvim_get_current_buf() }
         )
     end,
@@ -22,9 +22,9 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
     callback = function()
         wk.register({
-                ["<CR>"] = { "<cmd>.cc<cr><cmd>copen<cr>", "View current" },
-                o = { "<cmd>.cc<cr><cmd>cclose<cr>", "Jump current" },
-            },
+            ["<CR>"] = { "<cmd>.cc<cr><cmd>copen<cr>", "View current" },
+            o = { "<cmd>.cc<cr><cmd>cclose<cr>", "Jump current" },
+        },
             { buffer = vim.api.nvim_get_current_buf() })
     end,
 })
@@ -53,7 +53,7 @@ wk.register(
         ["<C-e>"] = { ui.toggle_quick_menu, "Harpoon" },
         ["+"] = { function() ui.nav_file(1) end, "Harpoon Nav 1" },
         ["-"] = { function() ui.nav_file(2) end, "Harpoon Nav 2" },
-        ["<C-ñ>"] = { function() ui.nav_file(3) end, "Harpoon Nav 3" },
+        ["ñ"] = { function() ui.nav_file(3) end, "Harpoon Nav 3" },
         ["<C-t>"] = { function() ui.nav_file(4) end, "Harpoon Nav 4" },
     }
 )
@@ -150,6 +150,8 @@ wk.register(
             f = {
                 name = "+File",
                 f = { "<cmd>Telescope find_files<cr>", "Find File" },
+                a = { function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
+                    "Find All Files" },
                 r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
                 s = { "<cmd>w<cr>", "Save" },
                 S = { "<cmd>wall<cr>", "Save all" },
@@ -268,6 +270,8 @@ wk.register(
                 name = "+Overseer",
                 o = { "<cmd>OverseerRun<cr>", "Run task" },
                 t = { "<cmd>OverseerToggle<cr>", "Toggle" },
+                s = { "<cmd>OverseerOpenLastOutput<cr>", "Toggle" },
+                l = { "<cmd>OverseerRestartLast<cr>", "Toggle" },
             },
             t = {
                 name = "+test",

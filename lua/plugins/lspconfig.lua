@@ -61,6 +61,7 @@ return {
                 on_attach(client, bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
                 vim.keymap.set('n', '<space>ls', "<cmd>ClangdSwitchSourceHeader<cr>", bufopts)
+                vim.keymap.set('n', '<space>D', "<cmd>Dox<cr>", bufopts)
                 vim.keymap.set({'n', 'v'}, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
             end,
             capabilities = capabilities
