@@ -12,22 +12,11 @@ return {
         local on_attach = function(client, bufnr)
             -- Enable completion triggered by <c-x><c-o>
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-            -- vim.api.nvim_create_autocmd('LspAttach', {
-            --     callback = function (args)
-            --     vim.bo[args.buf].formatexpr = nil
-            --         vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
-            -- end,
-            -- })
-
-            -- vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr')
-            -- Mappings.
-            -- See `:help vim.lsp.*` for documentation on any of the below functions
             local bufopts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
             vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-            vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
             vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
             vim.keymap.set('n', '<space>lwa', vim.lsp.buf.add_workspace_folder, bufopts)
             vim.keymap.set('n', '<space>lwr', vim.lsp.buf.remove_workspace_folder, bufopts)
