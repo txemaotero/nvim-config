@@ -1,3 +1,5 @@
+local workspaces = require("neorg_local_config")
+
 return {
     "nvim-neorg/neorg",
     ft = "norg",
@@ -28,9 +30,7 @@ return {
                 },
                 ["core.dirman"] = {
                     config = {
-                        workspaces = {
-                            work = "C:\\Users\\josote3651\\OneDrive - CTAG\\Documentos\\notas",
-                        }
+                        workspaces = workspaces,
                     }
                 },
             }

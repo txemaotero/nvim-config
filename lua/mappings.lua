@@ -206,6 +206,7 @@ wk.register(
                     t = { "<cmd>Neorg workspace gtd<cr>", "Tasks" },
                 },
                 w = { "<cmd>Neorg workspace work<cr>", "Work" },
+                p = { "<cmd>Neorg workspace personal<cr>", "Personal" },
                 l = { "<cmd>Telescope neorg insert_link<cr>", "New link" },
                 s = { "<cmd>Telescope neorg find_linkable<cr>", "Find link" },
                 f = { "<cmd>Telescope neorg insert_file_link<cr>", "File link" },
