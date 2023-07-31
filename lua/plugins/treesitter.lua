@@ -13,6 +13,9 @@ return {
             indent = {
                 enable = false,
             },
+            highlight = {
+                enable = true,
+            },
             textobjects = {
                 select = {
                     enable = true,
