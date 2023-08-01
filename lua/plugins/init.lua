@@ -1,24 +1,31 @@
 return {
     ---- Must be pluggins--------
-    'ralismark/opsort.vim',                             -- Allows sorting by values of lines
-    'junegunn/vim-easy-align',                          -- Align text with ga
-    {'kylechui/nvim-surround', config = true},          -- Change surround cs
-    {'numToStr/Comment.nvim', config = true},           -- Comments
-    'tpope/vim-repeat',                                 -- Better repeat
-    'tpope/vim-abolish',                                -- Better substitutions
+    'ralismark/opsort.vim',                                    -- Allows sorting by values of lines
+    'junegunn/vim-easy-align',                                 -- Align text with ga
+    { 'kylechui/nvim-surround', config = true },               -- Change surround cs
+    { 'numToStr/Comment.nvim',  config = true },               -- Comments
+    'tpope/vim-repeat',                                        -- Better repeat
+    'tpope/vim-abolish',                                       -- Better substitutions
 
-    {"windwp/nvim-autopairs", config = true},           -- Autoclose parenth
-    'vim-scripts/ReplaceWithRegister',                  -- Replace with register
-    {'phaazon/hop.nvim', branch = 'v2', config = true}, -- Easy motion with SPC-h
-    'airblade/vim-rooter',                              -- Change the working directory when new file is open
-    {'gbprod/yanky.nvim', config = true},
+    { "windwp/nvim-autopairs", config = true },                -- Autoclose parenth
+    'vim-scripts/ReplaceWithRegister',                         -- Replace with register
+    { 'phaazon/hop.nvim',      branch = 'v2', config = true }, -- Easy motion with SPC-h
+    'airblade/vim-rooter',                                     -- Change the working directory when new file is open
+    { 'gbprod/yanky.nvim', config = true },
 
-    'github/copilot.vim',
+    {
+        'github/copilot.vim',
+        config = function()
+            vim.api.nvim_set_var("copilot_filetypes", {
+                ["dap-repl"] = false,
+            })
+        end
+    },
 
     --- More text objects
     {
         "chrisgrieser/nvim-various-textobjs",
-        config = function ()
+        config = function()
             require("various-textobjs").setup({ useDefaultKeymaps = true })
         end,
     },
@@ -49,7 +56,7 @@ return {
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
-        config = function ()
+        config = function()
             local signs = {
                 Error = " ",
                 Warn = " ",
@@ -60,9 +67,9 @@ return {
 
             for type, icon in pairs(signs) do
                 local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
-            require("trouble").setup{
+            require("trouble").setup {
                 icons = true,
                 signs = {
                     error = signs.Error,
@@ -79,8 +86,8 @@ return {
     -- {'norcalli/nvim-colorizer.lua', config = true}, -- See colors hex
     {
         'uga-rosa/ccc.nvim',
-        config = function ()
-            require("ccc").setup{
+        config = function()
+            require("ccc").setup {
                 highlighter = {
                     auto_enable = true,
                 }
@@ -108,12 +115,26 @@ return {
     -- $ python -m jupyter_ascending.scripts.make_pair --base example
     {
         'untitled-ai/jupyter_ascending.vim',
-        cmd = {'JupyterExecute', 'JupyterExecuteAll'}
+        cmd = { 'JupyterExecute', 'JupyterExecuteAll' }
     },
 
     {
         "williamboman/mason.nvim",
         config = true,
     },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        },
+        event = "VeryLazy",
+        opts = {
+            handlers = {},
+            ensure_indtalled = {
+                "codelldb"
+            }
+        }
+    }
 
 }

@@ -42,21 +42,49 @@ return {
 
         local nvim_lsp = require('lspconfig')
 
+        local cmake_on_attach = function(bufnr)
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
+            vim.keymap.set('n', '<space>lmsb', "<cmd>CMakeSelect<cr>", bufopts)
+            local wk = require("which-key")
+            wk.register({
+                    ['<leader>m'] = {
+                        name = '+CMake',
+                        s = {
+                            name = '+Select',
+                            b = { "<cmd>CMakeSelectBuildTarget<cr>", "Build Target" },
+                            t = { "<cmd>CMakeSelectBuildType<cr>", "Build Type" },
+                            l = { "<cmd>CMakeSelectLaunchTarget<cr>", "Launch Target" },
+                            p = { "<cmd>CMakeSelectConfigurePreset<cr>", "Configure Preset" },
+                        },
+                        b = { "<cmd>CMakeBuild<cr>", "Build" },
+                        c = { "<cmd>CMakeClean<cr>", "Clean" },
+                        r = { "<cmd>CMakeRun<cr>", "Run" },
+                        S = { "<cmd>CMakeStop<cr>", "Stop" },
+                        i = { "<cmd>CMakeInstall<cr>", "Install" },
+                        d = { "<cmd>CMakeDebug<cr>", "Debug" },
+                    }
+                },
+                { buffer = vim.api.nvim_get_current_buf() })
+        end
         -- use a loop to conveniently call 'setup' on multiple servers and
         -- map buffer local keybindings when the language server attaches
         nvim_lsp.clangd.setup {
             on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
+                cmake_on_attach(bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
                 vim.keymap.set('n', '<space>ls', "<cmd>ClangdSwitchSourceHeader<cr>", bufopts)
                 vim.keymap.set('n', '<space>D', "<cmd>Dox<cr>", bufopts)
-                vim.keymap.set({'n', 'v'}, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
+                vim.keymap.set({ 'n', 'v' }, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
             end,
             capabilities = capabilities
         }
 
         nvim_lsp.cmake.setup {
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                cmake_on_attach(bufnr)
+            end,
         }
 
         nvim_lsp.pyright.setup {
