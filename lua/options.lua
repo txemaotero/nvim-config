@@ -3,6 +3,9 @@ vim.g.mapleader = " "
 -- vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
+-- load config file per project
+vim.o.exrc = true
+
 -- Mouse control
 vim.opt.mouse = "a"
 vim.opt.mousemodel = "popup"
