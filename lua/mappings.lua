@@ -29,12 +29,20 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+local function go_middle()
+    local line = vim.api.nvim_get_current_line()
+    local middle_pos = math.floor(string.len(line) / 2)
+    local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_win_set_cursor(0, { curr_line, middle_pos })
+end
+
 -- Special yank
 wk.register(
     {
         y = { "<Plug>(YankyYank)", "Yank" },
         p = { "<Plug>(YankyPutAfter)", "Yank" },
         P = { "<Plug>(YankyPutBefore)", "Yank" },
+        gm = { go_middle, "Go middle line" },
         gp = { "<Plug>(YankyGPutAfter)", "Yank" },
         gP = { "<Plug>(YankyGPutBefore)", "Yank" },
         ["<C-n>"] = { "<Plug>(YankyCycleForward)", "Yank", mode = { "n" } },
