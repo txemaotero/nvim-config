@@ -56,12 +56,14 @@ return {
                             l = { "<cmd>CMakeSelectLaunchTarget<cr>", "Launch Target" },
                             p = { "<cmd>CMakeSelectConfigurePreset<cr>", "Configure Preset" },
                         },
+                        S = { "<cmd>CMakeStop<cr>", "Stop" },
                         b = { "<cmd>CMakeBuild<cr>", "Build" },
                         c = { "<cmd>CMakeClean<cr>", "Clean" },
-                        r = { "<cmd>CMakeRun<cr>", "Run" },
-                        S = { "<cmd>CMakeStop<cr>", "Stop" },
-                        i = { "<cmd>CMakeInstall<cr>", "Install" },
                         d = { "<cmd>CMakeDebug<cr>", "Debug" },
+                        g = { "<cmd>CMakeGenerate<cr>", "Generate" },
+                        i = { "<cmd>CMakeInstall<cr>", "Install" },
+                        o = { "<cmd>CMakeOpen<cr>", "Open" },
+                        r = { "<cmd>CMakeRun<cr>", "Run" },
                     }
                 },
                 { buffer = vim.api.nvim_get_current_buf() })
@@ -85,6 +87,7 @@ return {
                 on_attach(client, bufnr)
                 cmake_on_attach(bufnr)
             end,
+            root_dir = nvim_lsp.util.root_pattern("CMakePresets.json", "build")
         }
 
         nvim_lsp.pyright.setup {

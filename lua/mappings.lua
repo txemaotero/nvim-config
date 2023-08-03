@@ -126,7 +126,7 @@ wk.register(
             [";"] = { "<cmd>Telescope commands<cr>", "Commands" },
             e = { "<cmd>edit %:p:h<cr>", "Explorer" },
             H = { "<C-W>s", "Split below" },
-            m = { require("harpoon.mark").add_file, "Add file to harpoon" },
+            M = { require("harpoon.mark").add_file, "Add file to harpoon" },
             N = { "<cmd>let @/ = ''<cr>", "No highlight" },
             v = "Inc. selection",
             V = { "<C-W>v", "Split right" },
