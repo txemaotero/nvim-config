@@ -11,6 +11,21 @@ function utils.get_git_root()
     return git_root .. '/'
 end
 
+function utils.get_git_submodule_parent_root()
+    local original_path = vim.fn.getcwd()
+    local git_root = utils.get_git_root()
+    if not git_root then
+        return nil
+    end
+    vim.fn.chdir(git_root .. '..')
+    git_root = utils.get_git_root()
+    if not git_root then
+        return nil
+    end
+    vim.fn.chdir(original_path)
+    return git_root
+end
+
 function utils.copy_file(src, dest)
     local input_file = io.open(src, 'rb')       -- open source file in binary mode
     if input_file then
