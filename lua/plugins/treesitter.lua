@@ -8,14 +8,16 @@ return {
         'p00f/nvim-ts-rainbow'
     },
     config = function()
-        require("nvim-treesitter.install").compilers = {"clang"}
+        require("nvim-treesitter.install").compilers = { "clang" }
         require("nvim-treesitter.configs").setup {
             ensure_installed = "all",
             indent = {
                 enable = false,
             },
             highlight = {
-                enable = false,
+                enable = true,
+                additional_vim_regex_highlighting = false,
+                disable = {"lua"},
             },
             textobjects = {
                 select = {
