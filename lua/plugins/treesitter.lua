@@ -1,6 +1,7 @@
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    enabled = true,
     dependencies = {
         'nvim-treesitter/nvim-treesitter-context',
         'nvim-treesitter/playground',
@@ -14,7 +15,7 @@ return {
                 enable = false,
             },
             highlight = {
-                enable = true,
+                enable = false,
             },
             textobjects = {
                 select = {

@@ -97,6 +97,7 @@ wk.register(
         ["<C-l>"] = { "<C-w>l", "Window l" },
         ["<C-k>"] = { "<C-w>k", "Window k" },
         ga        = { "<Plug>(EasyAlign)", "EasyAlign", mode = { "n", "x" } },
+        gp        = { "`[v`]", "Select pasted"},
         D         = { "d$", "Delete until end" },
         Y         = { "y$", "Yank until end" },
         J         = { "mzJ`z", "Join lines" },
