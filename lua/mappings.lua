@@ -114,6 +114,7 @@ wk.register(
         ["<C-F>"] = { "<Right>", "Right" },
         ["<C-N>"] = { "<Down>", "Down" },
         ["<C-P>"] = { "<Up>", "Up" },
+        ["<leader><Esc>"] = { "<C-\\><C-n>", "Esc" },
     },
     { mode = "t" }
 )
@@ -297,7 +298,6 @@ wk.register(
             },
             T = {
                 name = "+terminal",
-                l = { "<C-w>l", "Move l" },
                 [";"] = { "<cmd>FloatermNew --wintype=normal --height=6<cr>", "terminal" },
                 f = { "<cmd>FloatermNew fzf<cr>", "fzf" },
                 g = { "<cmd>FloatermNew lazygit<cr>", "git" },
