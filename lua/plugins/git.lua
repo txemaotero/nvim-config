@@ -10,11 +10,14 @@ return {
         config = true,
     },
     -- Shows git commits under the cursor (leader gm)
-    'rhysd/git-messenger.vim',
+    {
+        'rhysd/git-messenger.vim',
+        lazy = true,
+    },
     -- Easy managements of worktrees (remember to clone with --bare)
     {
         'ThePrimeagen/git-worktree.nvim',
-        config = function ()
+        config = function()
             local Worktree = require("git-worktree")
             local Job = require("plenary.job")
             Worktree.on_tree_change(function(op, metadata)
@@ -22,7 +25,7 @@ return {
                     -- TODO: Check, this does not work
                     Job:new({
                         command = "git",
-                        args = {"submodule", "update", "--init", "--recursive"}
+                        args = { "submodule", "update", "--init", "--recursive" }
                     }):sync()
                     require("notify")("Bien")
                 end
