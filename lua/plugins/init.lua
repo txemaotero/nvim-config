@@ -6,6 +6,9 @@ return {
     { 'numToStr/Comment.nvim',  config = true },               -- Comments
     'tpope/vim-repeat',                                        -- Better repeat
     'tpope/vim-abolish',                                       -- Better substitutions
+    'tpope/vim-dadbod',
+    'kristijanhusak/vim-dadbod-ui',
+    'kristijanhusak/vim-dadbod-completion',
 
     { "windwp/nvim-autopairs", config = true },                -- Autoclose parenth
     'vim-scripts/ReplaceWithRegister',                         -- Replace with register
