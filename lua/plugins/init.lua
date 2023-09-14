@@ -135,6 +135,11 @@ return {
                 "codelldb"
             }
         }
+    },
+    -- Better qf
+    {
+        'kevinhwang91/nvim-bqf',
+        config = true;
+        ft = {'qf'}
     }
-
 }
