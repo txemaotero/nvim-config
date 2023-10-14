@@ -202,7 +202,7 @@ wk.register(
                 name = "+LSP",
                 ["?"] = { "<cmd>SymbolsOutline<cr>", "List variables" },
                 ["="] = "Format range",
-                f = "Format file",
+                f = {"<cmd>Format<cr>", "Format file"},
                 r = "Rename",
                 a = "Action",
                 D = "Diagnostics",

@@ -1,5 +1,6 @@
 -- Leader to space
 vim.g.mapleader = " "
+vim.g.python3_host_prog = "/usr/local/bin/python3"
 -- vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
@@ -73,7 +74,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.list = true
-vim.opt.listchars = "tab:->,trail:·"
+vim.opt.listchars = "tab:-->,trail:·"
 
 -- Best search
 vim.opt.incsearch = true
