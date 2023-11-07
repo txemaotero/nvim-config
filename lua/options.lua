@@ -7,6 +7,8 @@ vim.opt.pumblend = 0
 -- load config file per project
 vim.o.exrc = true
 
+vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h12"
+
 -- Mouse control
 vim.opt.mouse = "a"
 vim.opt.mousemodel = "popup"

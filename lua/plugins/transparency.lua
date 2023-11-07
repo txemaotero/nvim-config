@@ -6,6 +6,10 @@ return {
     },
     lazy = false,
     priority = 1000,
+    enabled = function()
+        -- Disable if is gui
+        return vim.fn.has('gui_running') == 0
+    end,
     config = function()
         require("transparent").setup({})
         vim.g.transparent_groups = vim.list_extend(vim.g.transparent_groups or {}, {

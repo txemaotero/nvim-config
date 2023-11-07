@@ -94,9 +94,9 @@ return {
             single_file_support = true,
         }
 
-        nvim_lsp.emmet_language_server.setup {
-            on_attach = on_attach,
-        }
+        -- nvim_lsp.emmet_language_server.setup {
+        --     on_attach = on_attach,
+        -- }
 
         nvim_lsp.tsserver.setup {
             on_attach = on_attach,
