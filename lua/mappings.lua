@@ -19,6 +19,18 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+    pattern = "tex",
+    callback = function()
+        wk.register({
+            j        = { "gj", "" },
+            k        = { "gk", "" },
+        },
+            { buffer = vim.api.nvim_get_current_buf() }
+        )
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
     callback = function()
         wk.register({

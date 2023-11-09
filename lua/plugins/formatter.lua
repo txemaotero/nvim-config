@@ -14,7 +14,7 @@ return {
                     require("formatter.filetypes.lua").stylua,
                 },
                 python = {
-                    require("formatter.filetypes.python").balck,
+                    require("formatter.filetypes.python").black,
                 },
                 css = {
                     require("formatter.filetypes.css").prettier,
@@ -32,7 +32,6 @@ return {
                             args = {
                                 "-assume-filename",
                                 util.escape_path(util.get_current_buffer_file_name()),
-                                '--style="{BasedOnStyle: Mozilla, IndentWidth: 4, ColumnLimit: 120}"'
                             },
                             stdin = true,
                             try_node_modules = true,
@@ -46,7 +45,6 @@ return {
                             args = {
                                 "-assume-filename",
                                 util.escape_path(util.get_current_buffer_file_name()),
-                                '--style="{BasedOnStyle: Mozilla, IndentWidth: 4, ColumnLimit: 120}"'
                             },
                             stdin = true,
                             try_node_modules = true,

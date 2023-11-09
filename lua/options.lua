@@ -16,18 +16,18 @@ vim.opt.mousemodel = "popup"
 -- Line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.api.nvim_create_autocmd("InsertEnter", {
-    pattern = "*",
-    callback = function()
-        vim.opt.relativenumber = false
-    end,
-})
-vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    callback = function()
-        vim.opt.relativenumber = true
-    end,
-})
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+--     pattern = "*",
+--     callback = function()
+--         vim.opt.relativenumber = false
+--     end,
+-- })
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+--     pattern = "*",
+--     callback = function()
+--         vim.opt.relativenumber = true
+--     end,
+-- })
 
 -- Term colors
 vim.opt.termguicolors = true
@@ -41,11 +41,11 @@ else
 end
 
 -- Spell and text related
-vim.opt.spelllang = {"en", "es"}
+vim.opt.spelllang = {"en", "es", "gl"}
 vim.opt.spellsuggest = {"best", 9}
 vim.opt.spell = true
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"text", "latex", "markdown", "vimwiki", "norg"},
+    pattern = {"text", "tex", "markdown", "vimwiki", "norg"},
     callback = function()
         vim.opt_local.tw = 80
         vim.opt_local.conceallevel = 2

@@ -89,6 +89,11 @@ return {
             root_dir = nvim_lsp.util.root_pattern("CMakePresets.json", "build")
         }
 
+        nvim_lsp.texlab.setup {
+            on_attach = on_attach,
+            single_file_support = true,
+        }
+
         nvim_lsp.pyright.setup {
             on_attach = on_attach,
             single_file_support = true,
