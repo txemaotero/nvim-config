@@ -64,11 +64,12 @@ return {
         dependencies = "kyazdani42/nvim-web-devicons",
         config = function()
             local signs = {
-                Error = " ",
-                Warn = " ",
-                Hint = " ",
-                Info = " ",
-                Ok = "﫠",
+                Error = "",
+                Warn = "",
+                Hint = "",
+                Info = "",
+                Ok = "",
+
             }
 
             for type, icon in pairs(signs) do

@@ -99,18 +99,6 @@ return {
             single_file_support = true,
         }
 
-        -- nvim_lsp.emmet_language_server.setup {
-        --     on_attach = on_attach,
-        -- }
-
-        nvim_lsp.tsserver.setup {
-            on_attach = on_attach,
-        }
-
-        nvim_lsp.tailwindcss.setup {
-            on_attach = on_attach,
-        }
-
         nvim_lsp.rust_analyzer.setup {
             on_attach = on_attach,
             flags = {

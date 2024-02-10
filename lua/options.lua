@@ -34,7 +34,7 @@ vim.opt.termguicolors = true
 
 -- Undo persist
 vim.opt.undofile = true
-if vim.fn.has('macunix') == 0 then
+if vim.fn.has('win32') == 1 then
     vim.opt.undodir = os.getenv("UserProfile") .. "/.nvim/undodir"
 else
     vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
