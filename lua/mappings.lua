@@ -189,10 +189,13 @@ wk.register(
                 name = "+Git",
                 B = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle blame all" },
                 b = { "<cmd>Gitsigns blame_line<cr>", "Blame line" },
+                g = { "<cmd>Git<cr>", "Git" },
                 s = { "<cmd>Git status<cr>", "Status" },
                 t = { "<cmd>FloatermNew lazygit<cr>", "Lazygit" },
                 m = "Messenger",
                 v = { "<cmd>GV<cr>", "View log" },
+                p = { "<cmd>Git pull<cr>", "pull" },
+                P = { "<cmd>Git push<cr>", "push" },
                 w = { function() require('telescope').extensions.git_worktree.git_worktrees() end, "Worktree" },
                 W = { function() require('telescope').extensions.git_worktree.create_git_worktree() end, "New worktree" }
             },
