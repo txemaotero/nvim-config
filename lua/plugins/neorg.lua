@@ -1,4 +1,8 @@
-local workspaces = require("neorg_local_config")
+local has_local_config, local_config = pcall(require, "neorg_local_config")
+local workspaces = {}
+if has_local_config then
+   workspaces = local_config
+end
 
 return {
     "nvim-neorg/neorg",
