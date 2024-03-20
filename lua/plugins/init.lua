@@ -1,4 +1,17 @@
 return {
+    {
+        "txemaotero/entry_selector.nvim",
+        config = function ()
+            require("entry_selector").setup({
+                spaces = {
+                    trabajo = os.getenv("HOME") .. "/trabajo.txt"
+                }
+            })
+        end,
+        dependencies = {
+            'nvim-telescope/telescope.nvim',
+        }
+    },
     ---- Must be pluggins--------
     "ralismark/opsort.vim", -- Allows sorting by values of lines
     "junegunn/vim-easy-align", -- Align text with ga
