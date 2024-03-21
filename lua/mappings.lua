@@ -1,5 +1,10 @@
 local wk = require("which-key")
 
+local function write_time()
+    vim.api.nvim_put({os.date("%H:%M") .. " -> "}, '', true, true)
+    vim.api.nvim_input("a")
+end
+
 vim.keymap.set({ "n", "x" }, "<C-Z>", "<Nop>")
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -237,6 +242,7 @@ wk.register(
                     s = { "<cmd>Telescope neorg find_project_tasks<cr>", "Find tasks" },
                     t = { "<cmd>Neorg workspace gtd<cr>", "Tasks" },
                 },
+                T = { function() require("entry_selector").select_line("trabajo") end, "Select entry"},
                 w = { "<cmd>Neorg workspace work<cr>", "Work" },
                 p = { "<cmd>Neorg workspace personal<cr>", "Personal" },
                 l = { "<cmd>Telescope neorg insert_link<cr>", "New link" },
@@ -352,23 +358,7 @@ wk.register(
                 ["="] = { "<C-w>=", "Restore" },
                 m = { "<cmd>lua require('maximize').toggle()<cr>", "Maximize curr" },
             },
-            h = {
-                {
-                    name = "+hop",
-                    h = { "<cmd>HopWord<cr>", "Word" },
-                    w = { "<cmd>HopWord<cr>", "Word" },
-                    W = { "<cmd>HopWordMW<cr>", "Word MW" },
-                    a = { "<cmd>HopAnywhere<cr>", "Anywhere" },
-                    A = { "<cmd>HopAnywhereMW<cr>", "Anywhere MW" },
-                    l = { "<cmd>HopLine<cr>", "Line" },
-                    L = { "<cmd>HopLineMW<cr>", "Line MW" },
-                    c = { "<cmd>HopChar1<cr>", "1 char" },
-                    C = { "<cmd>HopChar1MW<cr>", "1 char MW" },
-                    t = { "<cmd>HopChar2<cr>", "2 chars" },
-                    T = { "<cmd>HopChar2MW<cr>", "2 chars MW" },
-                },
-                mode = { "n", "v" }
-            },
+            h = { write_time, "Hour"},
         }
     }
 )

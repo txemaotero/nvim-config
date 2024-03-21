@@ -5,7 +5,9 @@ return {
             require("entry_selector").setup({
                 spaces = {
                     trabajo = os.getenv("HOME") .. "/trabajo.txt"
-                }
+                },
+                sort_entries = true,
+                reverse_sort = true,
             })
         end,
         dependencies = {
