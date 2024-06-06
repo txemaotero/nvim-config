@@ -1,11 +1,23 @@
 return {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 2000,
-    config = function()
-        require("tokyonight").setup({
-        })
-        vim.cmd("colorscheme tokyonight-night")
-        vim.cmd("hi @text.todo guifg=#fa3939")
-    end
+    {
+        'rebelot/kanagawa.nvim',
+        lazy = false,
+        priority = 2000,
+        config = function()
+            require("kanagawa").setup({
+            })
+        end
+    },
+    {
+        'folke/tokyonight.nvim',
+        lazy = false,
+        priority = 2000,
+        config = function()
+            require("tokyonight").setup({
+            })
+            vim.cmd("colorscheme tokyonight-night")
+        end
+    },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+
 }
