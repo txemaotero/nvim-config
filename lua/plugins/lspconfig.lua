@@ -78,7 +78,8 @@ return {
                 vim.keymap.set('n', '<space>D', "<cmd>Dox<cr>", bufopts)
                 vim.keymap.set({ 'n', 'v' }, '<space>li', "<cmd>TSCppDefineClassFunc<cr>", bufopts)
             end,
-            capabilities = capabilities
+            capabilities = capabilities,
+            cmd = {"/usr/bin/clangd-18", "--clang-tidy"}
         }
 
         nvim_lsp.cmake.setup {
