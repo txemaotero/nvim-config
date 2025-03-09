@@ -128,10 +128,16 @@ wk.add(
     }
 )
 
+local find_pluggin_files = function ()
+    require("telescope.builtin").find_files {
+        cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+    }
+end
+
 wk.add(
     {
         { "<leader>.",     "<cmd>e $MYVIMRC<cr>",                                                                       desc = "Open config" },
-        { "<leader>/",     "<cmd>Telescope live_grep<cr>",                                                              desc = "Find text" },
+        { "<leader>/",     require("config.telescope.multigrep").live_multigrep,                                        desc = "Find text" },
         { "<leader>;",     "<cmd>Telescope commands<cr>",                                                               desc = "Commands" },
         { "<leader><Tab>", "<cmd>b#<cr>",                                                                               desc = "Alternate buffer" },
         { "<leader>H",     "<C-W>s",                                                                                    desc = "Split below" },
@@ -230,6 +236,7 @@ wk.add(
         { "<leader>sB",    "<cmd>Telescope buffers<cr>",                                                                desc = "Open buffers" },
         { "<leader>sH",    "<cmd>Telescope highlights<cr>",                                                             desc = "Highlights" },
         { "<leader>sM",    "<cmd>Telescope man_pages<cr>",                                                              desc = "Man pages" },
+        { "<leader>sP",    find_pluggin_files,                                                                          desc = "Find Pluggin files" },
         { "<leader>sS",    "<cmd>Telescope colorscheme<cr>",                                                            desc = "Color schemes" },
         { "<leader>sT",    "<cmd>Telescope cuffent_buffer_tags<cr>",                                                    desc = "Buffer tags" },
         { "<leader>sa",    "<cmd>Telescope live_grep<cr>",                                                              desc = "Find text" },
