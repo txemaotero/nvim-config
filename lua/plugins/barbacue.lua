@@ -1,3 +1,4 @@
+-- Context header
 return {
     "utilyre/barbecue.nvim",
     name = "barbecue",
@@ -5,8 +6,5 @@ return {
     dependencies = {
         "SmiteshP/nvim-navic",
     },
-    config = function ()
-        require("barbecue").setup()
-        require("barbecue.ui").toggle(true)
-    end
+    opts = {}
 }

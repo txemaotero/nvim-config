@@ -1,78 +1,29 @@
 return {
-    {
-        "txemaotero/entry_selector.nvim",
-        config = function ()
-            require("entry_selector").setup({
-                spaces = {
-                    trabajo = os.getenv("HOME") .. "/trabajo.txt"
-                },
-                sort_entries = true,
-                reverse_sort = true,
-            })
-        end,
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-        }
-    },
-
-    {
-        "ThePrimeagen/refactoring.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require("refactoring").setup({
-                -- prompt for return type
-                prompt_func_return_type = {
-                    go = true,
-                    cpp = true,
-                    c = true,
-                    java = true,
-                },
-                -- prompt for function parameters
-                prompt_func_param_type = {
-                    go = true,
-                    cpp = true,
-                    c = true,
-                    java = true,
-                },
-            })
-        end,
-    },
     ---- Must be pluggins--------
     "ralismark/opsort.vim", -- Allows sorting by values of lines
     "junegunn/vim-easy-align", -- Align text with ga
     { "kylechui/nvim-surround", config = true }, -- Change surround cs
     { "numToStr/Comment.nvim", config = true }, -- Comments
     "tpope/vim-repeat", -- Better repeat
-    "tpope/vim-abolish", -- Better substitutions
+    "tpope/vim-abolish", -- Better substitutions: Subvert
     "tpope/vim-dadbod",
     "kristijanhusak/vim-dadbod-ui",
     "kristijanhusak/vim-dadbod-completion",
 
-    { "windwp/nvim-autopairs", config = true }, -- Autoclose parenth
+    { "windwp/nvim-autopairs", config = true }, -- Autoclose parenthesis
     "vim-scripts/ReplaceWithRegister", -- Replace with register
-    { "phaazon/hop.nvim", branch = "v2", config = true }, -- Easy motion with SPC-h
     "airblade/vim-rooter", -- Change the working directory when new file is open
     { "gbprod/yanky.nvim", config = true },
-
-    {
-        "github/copilot.vim",
-        config = function()
-            vim.api.nvim_set_var("copilot_filetypes", {
-                ["dap-repl"] = false,
-            })
-        end,
-    },
 
     --- More text objects
     {
         "chrisgrieser/nvim-various-textobjs",
         config = function()
             require("various-textobjs").setup({
-                useDefaultKeymaps = true,
-                disabledKeymaps = { "gw", "gc" },
+                keympas = {
+                    useDefautls = true,
+                    disabledDefaults ={ "gw", "gc" },
+                }
             })
         end,
     },
@@ -85,17 +36,12 @@ return {
 
     -- c++ utils
     {
+        -- Define implementation from header
         "Badhi/nvim-treesitter-cpp-tools",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
         config = true,
-    },
-
-    -- Add colors to funciton agruments
-    {
-        "m-demare/hlargs.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
 
     ----------------- Appearence --------------------
@@ -131,7 +77,6 @@ return {
     },
     "ryanoasis/vim-devicons", -- Icons
     "stevearc/dressing.nvim", -- Fancy input boxes
-    -- {'norcalli/nvim-colorizer.lua', config = true}, -- See colors hex
     {
         "uga-rosa/ccc.nvim",
         config = function()
@@ -146,6 +91,7 @@ return {
     ----------- Markdown preview ------------
     {
         "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = "cd app && npm install",
         init = function()
             vim.g.mkdp_filetypes = { "markdown" }
@@ -154,7 +100,7 @@ return {
     },
     {
         'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+        name = 'render-markdown',                                                            -- Only needed if you have another plugin named markdown.nvim
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
         config = function()
             require('render-markdown').setup({})
@@ -174,24 +120,6 @@ return {
         cmd = { "JupyterExecute", "JupyterExecuteAll" },
     },
 
-    {
-        "williamboman/mason.nvim",
-        config = true,
-    },
-    {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-            "mfussenegger/nvim-dap",
-        },
-        event = "VeryLazy",
-        opts = {
-            handlers = {},
-            ensure_indtalled = {
-                "codelldb",
-            },
-        },
-    },
     -- Better qf
     {
         "kevinhwang91/nvim-bqf",
@@ -199,9 +127,9 @@ return {
         ft = { "qf" },
     },
 
-    -- Zen
+    -- Lua
     {
-        "Pocco81/true-zen.nvim",
-        config = true,
-    },
+        "folke/zen-mode.nvim",
+        opts = { }
+    }
 }

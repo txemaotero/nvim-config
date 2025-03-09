@@ -6,17 +6,12 @@ end
 
 return {
     "nvim-neorg/neorg",
-    ft = "norg",
-    cmd = "Neorg",
-    tag = "v7.0.0",
+    lazy = false,
+    tag = "*",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "hrsh7th/nvim-cmp",
-        'nvim-telescope/telescope.nvim',
         "nvim-neorg/neorg-telescope",
-        -- "nvim-treesitter/nvim-treesitter",
     },
-    build = ":Neorg sync-parsers",
     config = function()
         require('neorg').setup {
             load = {
