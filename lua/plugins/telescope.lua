@@ -20,6 +20,9 @@ return {
                 path_display={"truncate"},
                 dynamic_preview_title=true,
             },
+            extensions = {
+                fzf = {}
+            },
             pickers = {
                 buffers = {
                     mappings = {
@@ -30,5 +33,6 @@ return {
                 }
             },
         })
+        require("telescope").load_extension("fzf")
     end
 }
