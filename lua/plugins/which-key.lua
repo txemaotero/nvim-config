@@ -28,7 +28,6 @@ return {
 
         -- WhichKeyFloat transparent background
         vim.cmd("highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK")
-        require("mappings")
     end
 }
 

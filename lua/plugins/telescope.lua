@@ -9,11 +9,18 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make'
+        },
+        {
+            dir = "~/repos/telescope-cppman.nvim",
+            config = function ()
+                vim.keymap.set("n", "<leader>C", require("cppman").telescope_cppman)
+            end
         }
     },
     config = function()
         require("telescope").load_extension("git_worktree")
         require("telescope").load_extension("yank_history")
+        require("telescope").load_extension("cppman")
         local actions = require("telescope.actions")
         require("telescope").setup({
             defaults = {
