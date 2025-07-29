@@ -8,6 +8,7 @@ return {
     "nvim-neorg/neorg",
     lazy = false,
     version = "*",
+    enabled = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-neorg/neorg-telescope",

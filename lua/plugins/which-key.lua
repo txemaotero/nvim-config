@@ -4,10 +4,8 @@ return {
     config = function()
         -- Setup options
         require("which-key").setup({
+            preset = "modern",
             plugins = {
-                spelling = {
-                    enabled = true,
-                },
                 -- the presets plugin, adds help for a bunch of default keybindings in Neovim
                 -- No actual key bindings are created
                 presets = {
@@ -25,9 +23,6 @@ return {
                 align = "center", -- align columns left, center or right
             },
         })
-
-        -- WhichKeyFloat transparent background
-        vim.cmd("highlight WhichKeyFloat ctermbg=BLACK ctermfg=BLACK")
     end
 }
 

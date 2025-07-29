@@ -1,13 +1,11 @@
 -- Leader to space
 vim.g.mapleader = " "
-vim.g.python3_host_prog = "/usr/local/bin/python3"
+vim.g.python3_host_prog = os.getenv("HOME") .. "/.local/share/nvim/pyenv/bin/python"
 -- vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
 -- load config file per project
 vim.o.exrc = true
-
-vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h12"
 
 -- Mouse control
 vim.opt.mouse = "a"
@@ -16,18 +14,6 @@ vim.opt.mousemodel = "popup"
 -- Line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
--- vim.api.nvim_create_autocmd("InsertEnter", {
---     pattern = "*",
---     callback = function()
---         vim.opt.relativenumber = false
---     end,
--- })
--- vim.api.nvim_create_autocmd("InsertLeave", {
---     pattern = "*",
---     callback = function()
---         vim.opt.relativenumber = true
---     end,
--- })
 
 -- Term colors
 vim.opt.termguicolors = true
@@ -53,19 +39,10 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"c", "cpp"},
-    callback = function()
-        vim.opt_local.tw = 120
-    end,
-})
-
--- Highlight current line
-vim.opt.ruler = true
 vim.opt.cursorline = true
 vim.opt.linebreak = true
 
--- Lines to end of window
+-- Lines to window bottom
 vim.opt.scrolloff = 10
 
 -- Indentation
@@ -92,3 +69,6 @@ end
 -- Disable netrw to use Oil
 vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Disable perl
+vim.g.loaded_perl_provider = 0

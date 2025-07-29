@@ -29,7 +29,8 @@ return {
                 "CmpDocumentation",
                 "CmpDocumentationBorder",
 
-                "WhichKeyFloat",
+                "WhichKeyNormal",
+                "WhichKeyTitle",
                 "LspFloatWinNormal",
 
                 "BufferLineTabClose",

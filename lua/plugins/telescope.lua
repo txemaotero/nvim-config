@@ -2,23 +2,29 @@ return {
     'nvim-telescope/telescope.nvim',
     build = ':TSUpdate',
     dependencies = {
-        'ElPiloto/telescope-vimwiki.nvim',
         'nvim-lua/popup.nvim',
-        'ThePrimeagen/git-worktree.nvim',
         'nvim-lua/plenary.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make'
         },
         {
-            dir = "~/repos/telescope-cppman.nvim",
+            dir = os.getenv("HOME") .. "/repos/telescope-cppman.nvim",
             config = function ()
-                vim.keymap.set("n", "<leader>C", require("cppman").telescope_cppman)
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = {"cpp"},
+                    callback = function ()
+                        vim.schedule(
+                            function ()
+                                vim.keymap.set("n", "<leader>C", require("cppman").telescope_cppman, {buffer = true})
+                            end
+                        )
+                    end
+                })
             end
         }
     },
     config = function()
-        require("telescope").load_extension("git_worktree")
         require("telescope").load_extension("yank_history")
         require("telescope").load_extension("cppman")
         local actions = require("telescope.actions")

@@ -18,6 +18,11 @@ return {
                     word = true,
                     cyclic = true,
                 },
+                augend.constant.new{
+                    elements = {"ON", "OFF"},
+                    word = true,
+                    cyclic = true,
+                },
                 augend.date.alias["%d/%m/%Y"],
                 augend.date.new{
                     pattern = "%d-%m-%Y",
