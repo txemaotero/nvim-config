@@ -1,20 +1,29 @@
 local wk = require("which-key")
 
+local function toggle_quickfix()
+    local windows = vim.fn.getwininfo()
+    for _, win in pairs(windows) do
+        if win["quickfix"] == 1 then
+            vim.cmd.cclose()
+            return
+        end
+    end
+    vim.cmd.copen()
+end
+
 vim.keymap.set({ "n", "x" }, "<C-Z>", "<Nop>")
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
     callback = function()
         wk.add({
-            {"<CR>", "<C-]>", desc = "Follow link" },
-            {"<BS>" ,  "<C-T>", desc = "Go back" },
-            {"o"        ,  "/'\\l\\{2,\\}'<CR>", desc = "Next option" },
-            {"O"        ,  "?'\\l\\{2,\\}'<CR>", desc = "Prev. option" },
-            {"s"        ,  "/|.\\{-}|<CR>", desc = "Next subject" },
-            {"S"        ,  "?|.\\{-}|<CR>", desc = "Prev. subject" },
-        },
-            { buffer = true }
-        )
+            {"<CR>", "<C-]>", desc = "Follow link", buffer=0 },
+            {"<BS>" ,  "<C-T>", desc = "Go back", buffer=0 },
+            {"o"        ,  "/'\\l\\{2,\\}'<CR>", desc = "Next option", buffer=0 },
+            {"O"        ,  "?'\\l\\{2,\\}'<CR>", desc = "Prev. option", buffer=0 },
+            {"s"        ,  "/|.\\{-}|<CR>", desc = "Next subject", buffer=0 },
+            {"S"        ,  "?|.\\{-}|<CR>", desc = "Prev. subject", buffer=0 },
+        })
     end,
 })
 
@@ -22,10 +31,8 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "norg",
     callback = function()
         wk.add({
-            {"<CR>", "<Plug>(neorg.esupports.hop.hop-link)", desc="Jump"}
-            },
-            { buffer = true }
-        )
+            {"<CR>", "<Plug>(neorg.esupports.hop.hop-link)", desc="Jump", buffer=0}
+        })
     end,
 })
 
@@ -34,11 +41,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
     callback = function()
         wk.add({
-            {"j", "gj"},
-            {"k", "gk"},
-            },
-            { buffer = true }
-        )
+            {"j", "gj", buffer=0},
+            {"k", "gk", buffer=0},
+        })
     end,
 })
 
@@ -56,9 +61,7 @@ wk.add(
         { "<C-p>", "<Plug>(YankyCycleBackward)", desc = "Yank Back" },
         {
             { "P",  "<Plug>(YankyPutBefore)",  desc = "Put before" },
-            { "gP", "<Plug>(YankyGPutBefore)", desc = "GPut before" },
             { "gm", go_middle,                 desc = "Go middle line" },
-            { "gp", "<Plug>(YankyGPutAfter)",  desc = "GPut after" },
             { "p",  "<Plug>(YankyPutAfter)",   desc = "Put after" },
             { "y",  "<Plug>(YankyYank)",       desc = "Yank" },
             mode = { "n", "x" },
@@ -148,6 +151,8 @@ wk.add(
         { "<leader>di",    function() require("dapui").eval() end,                                               desc = "Info",                  mode = { "n",                             "v" } },
         { "<leader>dm",    function() require("dap").set_breakpoint(nil,                                         nil,                            vim.fn.input("Log point message: ")) end, desc = "Log message" },
         { "<leader>dt",    function() require("dapui").toggle({}) end,                                           desc = "Toggle UI" },
+        { "<leader>ds",    function() require("dap").terminate() end,                                           desc = "Toggle UI" },
+        { "<leader>dd",    function() require("dap").continue() end,                                             desc = "Debug" },
         { "<F5>",          function() require("dap").down() end,                                                 desc = "Debug" },
         { "<F4>",          function() require("dap").up() end,                                                   desc = "Debug" },
         { "<F7>",          function() require("dap").continue() end,                                             desc = "Debug" },
@@ -200,6 +205,7 @@ wk.add(
         { "<leader>oo",    "<cmd>OverseerRun<cr>",                                                               desc = "Run task" },
         { "<leader>os",    "<cmd>OverseerOpenLastOutput<cr>",                                                    desc = "Toggle" },
         { "<leader>ot",    "<cmd>OverseerToggle<cr>",                                                            desc = "Toggle" },
+        { "<leader>q",    toggle_quickfix,                                                            desc = "Toggle Quickfix" },
         { "<leader>s",     group = "Telescope" },
         { "<leader>s/",    "<cmd>Telescope commands_history<cr>",                                                desc = "History" },
         { "<leader>s;",    "<cmd>Telescope commands<cr>",                                                        desc = "Commands" },
@@ -268,5 +274,6 @@ wk.add(
         { "<leader>wt",    "<C-w>T",                                                                             desc = "Move to tab" },
         { "<leader>wv",    "<C-w>v",                                                                             desc = "VSplit vert" },
         { "<leader>ww",    "<C-w>w",                                                                             desc = "Move to last" },
+        { "<leader>W", function() vim.o.wrap = not vim.o.wrap end,                                                                             desc = "Togle wrap" },
     }
 )

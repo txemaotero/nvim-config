@@ -9,7 +9,10 @@ return {
         "antoinemadec/FixCursorHold.nvim"
     },
     config = function()
-        require("neotest-gtest").setup({})
+        require("neotest-gtest").setup({
+            debug_adapter = "cppdbg",
+            mappings = { configure = "C" },
+        })
         require("neotest").setup({
             adapters = {
                 require("neotest-python")({

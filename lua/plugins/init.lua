@@ -7,10 +7,8 @@ return {
     "tpope/vim-repeat", -- Better repeat
     "tpope/vim-abolish", -- Better substitutions: Subvert
     { "windwp/nvim-autopairs", config = true }, -- Autoclose parenthesis
-    "vim-scripts/ReplaceWithRegister", -- Replace with register
     "airblade/vim-rooter", -- Change the working directory when new file is open
     { "gbprod/yanky.nvim", config = true },
-
 
     -- Databases
     "tpope/vim-dadbod",
@@ -56,7 +54,7 @@ return {
 
     "ryanoasis/vim-devicons", -- Icons
     "stevearc/dressing.nvim", -- Fancy input boxes
-    -- See #999999 colors
+    -- See #AAAAAA colors
     {
         "uga-rosa/ccc.nvim",
         config = function()
@@ -93,4 +91,14 @@ return {
         config = true,
         ft = { "qf" },
     },
+
+    {
+        "github/copilot.vim",
+        config = function()
+            vim.g.copilot_filetypes = {
+                markdown = false
+            }
+        end
+
+    }
 }

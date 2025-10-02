@@ -8,7 +8,7 @@ return {
         local dap = require('dap')
         require('dapui').setup()
 
-        require("dap-python").setup("python3")
+        require("dap-python").setup(os.getenv("HOME") .. "/.local/share/nvim/pyenv/bin/python3")
 
         vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='', numhl=''})
         vim.fn.sign_define('DapBreakpointCondition', {text='🟠', texthl='', linehl='', numhl=''})
@@ -45,6 +45,30 @@ return {
                 options = {
                     detached = false,
                 }
+            },
+        }
+
+        dap.configurations.python = {
+            {
+                name   = "Launch simbev (module)",
+                type   = "python",
+                request= "launch",
+                module = "simbev",
+                console= "integratedTerminal",
+                args   = {},
+            },
+            {
+                name    = "Run script with dynamic args",
+                type    = "python",
+                request = "launch",
+                program = "${workspaceFolder}/examples/power_consumption_profile.py",
+                console = "integratedTerminal",
+                -- args    = {"-b", "2025-01-01", "-e", "2025-01-07", "../scenarios/default/configs/default.cfg"}
+                -- args    = function()
+                --     local input = vim.fn.input("Debugger args: ")
+                --     -- split on whitespace into a Lua table
+                --     return vim.split(input, "%s+")
+                -- end,
             },
         }
 
