@@ -19,6 +19,7 @@ return {
                     dap = { justMyCode = false },
                     args = { "--log-level", "DEBUG" },
                     runner = "pytest",
+                    python = "env/bin/python",
                 }),
                 require("neotest-gtest")
             }
