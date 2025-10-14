@@ -96,7 +96,8 @@ return {
         "github/copilot.vim",
         config = function()
             vim.g.copilot_filetypes = {
-                markdown = false
+                markdown = false,
+                norg = false,
             }
         end
 
