@@ -72,3 +72,8 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Disable perl
 vim.g.loaded_perl_provider = 0
+
+vim.diagnostic.enable = true
+vim.diagnostic.config({
+    virtual_text = true,
+})

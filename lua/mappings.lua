@@ -11,6 +11,19 @@ local function toggle_quickfix()
     vim.cmd.copen()
 end
 
+local function reload_plugin(plugin_name)
+  for name, _ in pairs(package.loaded) do
+    if name:match("^" .. plugin_name) then
+      package.loaded[name] = nil
+    end
+  end
+  require(plugin_name).setup()
+end
+
+wk.add({
+    { "<leader>R", function() reload_plugin("neogit") end, desc = "Reload neogit" }
+})
+
 vim.keymap.set({ "n", "x" }, "<C-Z>", "<Nop>")
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -23,6 +36,15 @@ vim.api.nvim_create_autocmd("FileType", {
             {"O"        ,  "?'\\l\\{2,\\}'<CR>", desc = "Prev. option", buffer=0 },
             {"s"        ,  "/|.\\{-}|<CR>", desc = "Next subject", buffer=0 },
             {"S"        ,  "?|.\\{-}|<CR>", desc = "Prev. subject", buffer=0 },
+        })
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+    callback = function()
+        wk.add({
+            { "<leader>ks", "<cmd>ClaudeCodeTreeAdd<cr>", desc = "Add file" }
         })
     end,
 })
@@ -115,7 +137,7 @@ wk.add(
             { "<C-F>",         "<Right>",     desc = "Right" },
             { "<C-N>",         "<Down>",      desc = "Down" },
             { "<C-P>",         "<Up>",        desc = "Up" },
-            { "<leader><Esc>", "<C-\\><C-n>", desc = "Esc" },
+            { "<Esc><Esc>", "<C-\\><C-n>", desc = "Esc" },
         },
     }
 )
@@ -125,6 +147,34 @@ local find_pluggin_files = function ()
         cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
     }
 end
+
+local function search_word_under_cursor()
+    local word = vim.fn.expand("<cword>")
+    require("telescope.builtin").grep_string({ search = word })
+end
+
+local function search_WORD_under_cursor()
+    local word = vim.fn.expand("<cWORD>")
+    require("telescope.builtin").grep_string({ search = word })
+end
+
+local function get_selection()
+   -- does not handle rectangular selection
+   local s_start = vim.fn.getpos "."
+   local s_end = vim.fn.getpos "v"
+   local lines = vim.fn.getregion(s_start,s_end)
+   return table.concat(lines, "")
+end
+
+local function search_visual_selection()
+    require("telescope.builtin").grep_string({ search = get_selection() })
+end
+
+wk.add(
+    {
+        { "<leader>s", search_visual_selection, desc = "Search selection", mode = "v" },
+    }
+)
 
 wk.add(
     {
@@ -154,8 +204,9 @@ wk.add(
         { "<leader>di",    function() require("dapui").eval() end,                                               desc = "Info",                  mode = { "n",                             "v" } },
         { "<leader>dm",    function() require("dap").set_breakpoint(nil,                                         nil,                            vim.fn.input("Log point message: ")) end, desc = "Log message" },
         { "<leader>dt",    function() require("dapui").toggle({}) end,                                           desc = "Toggle UI" },
-        { "<leader>ds",    function() require("dap").terminate() end,                                           desc = "Toggle UI" },
+        { "<leader>ds",    function() require("dap").terminate() end,                                            desc = "Toggle UI" },
         { "<leader>dd",    function() require("dap").continue() end,                                             desc = "Debug" },
+        { "<leader>dl",    function() require"osv".launch({port = 8086}) end,                                    desc = "Run lua dap server" },
         { "<F5>",          function() require("dap").down() end,                                                 desc = "Debug" },
         { "<F4>",          function() require("dap").up() end,                                                   desc = "Debug" },
         { "<F7>",          function() require("dap").continue() end,                                             desc = "Debug" },
@@ -249,6 +300,8 @@ wk.add(
         { "<leader>sr",    "<cmd>Telescope registers<cr>",                                                       desc = "Registers" },
         { "<leader>ss",    "<cmd>Telescope ultisnips<cr>",                                                       desc = "Snippets" },
         { "<leader>st",    "<cmd>Telescope spell_suggest<cr>",                                                   desc = "Spell suggestions" },
+        { "<leader>sw",    search_word_under_cursor,                                                             desc = "word under cursor" },
+        { "<leader>sW",    search_WORD_under_cursor,                                                             desc = "WORD under cursor" },
         { "<leader>sy",    "<cmd>Telescope yank_history<cr>",                                                    desc = "Yank hist." },
         { "<leader>sz",    "<cmd>Telescope<cr>",                                                                 desc = "Telescope" },
         { "<leader>t",     group = "test" },
