@@ -298,7 +298,7 @@ wk.add(
         { "<leader>sp",    "<cmd>Telescope tags<cr>",                                                            desc = "Project tags" },
         { "<leader>sq",    "<cmd>Telescope quickfix<cr>",                                                        desc = "Qhickfix list" },
         { "<leader>sr",    "<cmd>Telescope registers<cr>",                                                       desc = "Registers" },
-        { "<leader>ss",    "<cmd>Telescope ultisnips<cr>",                                                       desc = "Snippets" },
+        { "<leader>ss",    function() require("telescope.builtin").resume() end,                                 desc = "Resume" },
         { "<leader>st",    "<cmd>Telescope spell_suggest<cr>",                                                   desc = "Spell suggestions" },
         { "<leader>sw",    search_word_under_cursor,                                                             desc = "word under cursor" },
         { "<leader>sW",    search_WORD_under_cursor,                                                             desc = "WORD under cursor" },
