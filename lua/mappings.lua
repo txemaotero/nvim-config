@@ -1,5 +1,13 @@
 local wk = require("which-key")
 
+local function open_explorer()
+    if vim.bo.buftype == "terminal" then
+        vim.cmd("edit " .. vim.fn.fnameescape(vim.fn.getcwd()))
+    else
+        vim.cmd("edit %:p:h")
+    end
+end
+
 local function toggle_quickfix()
     local windows = vim.fn.getwininfo()
     for _, win in pairs(windows) do
@@ -130,13 +138,6 @@ wk.add(
     {
         {
             mode = { "t" },
-            { "<C-A>",         "<Home>",      desc = "Home" },
-            { "<C-B>",         "<Left>",      desc = "Left" },
-            { "<C-D>",         "<Del>",       desc = "Delete" },
-            { "<C-E>",         "<End>",       desc = "End" },
-            { "<C-F>",         "<Right>",     desc = "Right" },
-            { "<C-N>",         "<Down>",      desc = "Down" },
-            { "<C-P>",         "<Up>",        desc = "Up" },
             { "<Esc><Esc>", "<C-\\><C-n>", desc = "Esc" },
         },
     }
@@ -178,7 +179,7 @@ wk.add(
 
 wk.add(
     {
-        { "-",             "<cmd>edit %:p:h<cr>",                                                                desc = "Explorer" },
+        { "-",             open_explorer,                                                                        desc = "Explorer" },
         { "<leader>.",     "<cmd>e $MYVIMRC<cr>",                                                                desc = "Open config" },
         { "<leader>/",     require("config.telescope.multigrep").live_multigrep,                                 desc = "Find text" },
         { "<leader>;",     "<cmd>Telescope commands<cr>",                                                        desc = "Commands" },
