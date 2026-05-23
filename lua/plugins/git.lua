@@ -6,14 +6,18 @@ return {
     'junegunn/gv.vim',
 
     {
-        "NeogitOrg/neogit",
+        dir = os.getenv("HOME") .. "/repos/txema_neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
             "sindrets/diffview.nvim",        -- optional - Diff integration
             -- Only one of these is needed, not both.
             "nvim-telescope/telescope.nvim", -- optional
         },
-        config = true
+        opts = {
+            commit_view = {
+                invert_open_file = false,
+            },
+        }
     },
 
     -- Git diff simbols on number column
