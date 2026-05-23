@@ -65,6 +65,7 @@ return {
                 },
             },
         }
-        vim.lsp.enable({"clangd", "cmake", "texlab", "pyright", "lua_ls"})
+
+        vim.lsp.enable({"clangd", "cmake", "texlab", "pyright", "lua_ls", "rust_analyzer"})
     end
 }
