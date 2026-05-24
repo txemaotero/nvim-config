@@ -25,8 +25,8 @@ else
     vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 end
 
--- Spell: off by default, enabled per FileType in autocmds.lua
-vim.opt.spell = false
+-- Spell on everywhere; FileType autocmd in autocmds.lua tunes tw/conceallevel for prose
+vim.opt.spell = true
 vim.opt.spelllang = { "en", "es", "gl" }
 vim.opt.spellsuggest = { "best", 9 }
 

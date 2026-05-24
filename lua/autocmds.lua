@@ -4,7 +4,6 @@ local wk = require("which-key")
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "text", "tex", "markdown", "vimwiki", "norg" },
     callback = function()
-        vim.opt_local.spell = true
         vim.opt_local.tw = 80
         vim.opt_local.conceallevel = 2
         vim.cmd([[hi! SpellBad guifg=#9c3838]])
