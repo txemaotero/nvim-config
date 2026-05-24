@@ -25,19 +25,10 @@ else
     vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 end
 
--- Spell: off by default, enabled per FileType below
+-- Spell: off by default, enabled per FileType in autocmds.lua
 vim.opt.spell = false
 vim.opt.spelllang = { "en", "es", "gl" }
 vim.opt.spellsuggest = { "best", 9 }
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "text", "tex", "markdown", "vimwiki", "norg" },
-    callback = function()
-        vim.opt_local.spell = true
-        vim.opt_local.tw = 80
-        vim.opt_local.conceallevel = 2
-        vim.cmd([[hi! SpellBad guifg=#9c3838]])
-    end,
-})
 
 vim.opt.cursorline = true
 vim.opt.linebreak = true
