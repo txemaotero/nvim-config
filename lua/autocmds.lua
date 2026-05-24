@@ -1,5 +1,7 @@
 -- Per-FileType options and buffer-local mappings.
-local wk = require("which-key")
+-- Note: buffer-local mappings here use vim.keymap.set with `buffer = args.buf`
+-- rather than which-key's wk.add({...buffer=0}); wk.add re-registers on every
+-- BufEnter so checkhealth flags it as duplicated.
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "text", "tex", "markdown", "vimwiki", "norg" },
@@ -12,42 +14,43 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "help",
-    callback = function()
-        wk.add({
-            { "<CR>", "<C-]>",                desc = "Follow link",  buffer = 0 },
-            { "<BS>", "<C-T>",                desc = "Go back",      buffer = 0 },
-            { "o",    "/'\\l\\{2,\\}'<CR>",   desc = "Next option",  buffer = 0 },
-            { "O",    "?'\\l\\{2,\\}'<CR>",   desc = "Prev. option", buffer = 0 },
-            { "s",    "/|.\\{-}|<CR>",        desc = "Next subject", buffer = 0 },
-            { "S",    "?|.\\{-}|<CR>",        desc = "Prev. subject", buffer = 0 },
-        })
+    callback = function(args)
+        local map = function(lhs, rhs, desc)
+            vim.keymap.set("n", lhs, rhs, { buffer = args.buf, desc = desc })
+        end
+        map("<CR>", "<C-]>",                "Follow link")
+        map("<BS>", "<C-T>",                "Go back")
+        map("o",    "/'\\l\\{2,\\}'<CR>",   "Next option")
+        map("O",    "?'\\l\\{2,\\}'<CR>",   "Prev. option")
+        map("s",    "/|.\\{-}|<CR>",        "Next subject")
+        map("S",    "?|.\\{-}|<CR>",        "Prev. subject")
     end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-    callback = function()
-        wk.add({
-            { "<leader>ks", "<cmd>ClaudeCodeTreeAdd<cr>", desc = "Add file" },
+    callback = function(args)
+        vim.keymap.set("n", "<leader>ks", "<cmd>ClaudeCodeTreeAdd<cr>", {
+            buffer = args.buf,
+            desc = "Add file",
         })
     end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "norg",
-    callback = function()
-        wk.add({
-            { "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", desc = "Jump", buffer = 0 },
+    callback = function(args)
+        vim.keymap.set("n", "<CR>", "<Plug>(neorg.esupports.hop.hop-link)", {
+            buffer = args.buf,
+            desc = "Jump",
         })
     end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "tex",
-    callback = function()
-        wk.add({
-            { "j", "gj", buffer = 0 },
-            { "k", "gk", buffer = 0 },
-        })
+    callback = function(args)
+        vim.keymap.set("n", "j", "gj", { buffer = args.buf })
+        vim.keymap.set("n", "k", "gk", { buffer = args.buf })
     end,
 })
