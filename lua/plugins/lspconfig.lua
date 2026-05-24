@@ -1,9 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
     config = function()
-        local opts = { noremap = true, silent = true }
-        -- Use an on_attach function to only map the following keys
-        -- after the language server attaches to the current buffer
+        -- Buffer-local keymaps on LSP attach
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
                 local bufopts = { noremap = true, silent = true, buffer = args.bufnr }
@@ -24,48 +22,33 @@ return {
             end,
         })
 
-        -- Setup lspconfig in cmp.
-        require "lsp_signature".setup({
+        require("lsp_signature").setup({
             toggle_key = '<C-e>',
         })
 
-        -- Setup lspconfig.
-        local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-        capabilities.offsetEncoding = { "utf-16" }
+        -- nvim-cmp completion capabilities applied to every server
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        vim.lsp.config("*", { capabilities = capabilities })
 
-        vim.lsp.config("*", {})
-        vim.lsp.config["clangd"] = {
-            cmd = {"/usr/bin/clangd-19", "--clang-tidy"}
-        }
-        vim.lsp.config["cmake"] = {
-            root_markers = {"CMakePresets.json", "build"},
-        }
+        vim.lsp.config("clangd", {
+            cmd = { "/usr/bin/clangd-19", "--clang-tidy" },
+            capabilities = { offsetEncoding = { "utf-16" } },
+        })
 
-        vim.lsp.config["lua_ls"] = {
-            cmd = { 'lua-language-server' },
+        vim.lsp.config("lua_ls", {
             settings = {
                 Lua = {
-                    runtime = {
-                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                        version = 'LuaJIT',
-                    },
-                    diagnostics = {
-                        -- Get the language server to recognize the `vim` global
-                        globals = { 'vim' },
-                    },
+                    runtime = { version = "LuaJIT" },
+                    diagnostics = { globals = { "vim" } },
                     workspace = {
-                        -- Make the server aware of Neovim runtime files
                         library = vim.api.nvim_get_runtime_file("", true),
                         checkThirdParty = false,
                     },
-                    -- Do not send telemetry data containing a randomized but unique identifier
-                    telemetry = {
-                        enable = false,
-                    },
+                    telemetry = { enable = false },
                 },
             },
-        }
+        })
 
-        vim.lsp.enable({"clangd", "cmake", "texlab", "pyright", "lua_ls", "rust_analyzer"})
-    end
+        vim.lsp.enable({ "clangd", "cmake", "texlab", "pyright", "lua_ls", "rust_analyzer" })
+    end,
 }
