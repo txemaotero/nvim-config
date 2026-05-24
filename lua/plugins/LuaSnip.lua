@@ -32,8 +32,8 @@ return {
 
         -- To chose between nodes
         vim.keymap.set({ "i" }, "<c-l>", function()
-            if ls.choise_active() then
-                ls.change_choice()
+            if ls.choice_active() then
+                ls.change_choice(1)
             end
         end)
     end

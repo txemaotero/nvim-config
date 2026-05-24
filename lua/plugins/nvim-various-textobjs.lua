@@ -4,8 +4,8 @@ return {
     "chrisgrieser/nvim-various-textobjs",
     config = function()
         require("various-textobjs").setup({
-            keympas = {
-                useDefautls = true,
+            keymaps = {
+                useDefaults = true,
                 disabledDefaults = { "gw", "gc" },
             },
         })
