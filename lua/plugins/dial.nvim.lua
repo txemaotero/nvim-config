@@ -1,3 +1,5 @@
+-- dial.nvim: enhanced C-a/C-x — increments booleans, dates, hex, AND/OR, ON/OFF, etc.
+-- keywords: increment, decrement, toggle, boolean, date, number, edit
 return {
     'monaqa/dial.nvim',
     config = function ()

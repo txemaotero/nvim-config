@@ -1,3 +1,5 @@
+-- telescope.nvim: fuzzy finder for files, buffers, grep, LSP refs, git, etc.; `<leader>s*` and `<leader>f*` mappings
+-- keywords: fuzzy, finder, search, files, grep, picker, fzf
 return {
     'nvim-telescope/telescope.nvim',
     build = ':TSUpdate',

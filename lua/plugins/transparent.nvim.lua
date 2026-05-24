@@ -1,3 +1,5 @@
+-- transparent.nvim: make many UI backgrounds transparent (only when not in GUI)
+-- keywords: transparent, background, alpha, ui
 return {
     'xiyaowong/transparent.nvim',
     lazy = false,

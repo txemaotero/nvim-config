@@ -1,3 +1,5 @@
+-- neotest: test runner framework with pytest and Google Test adapters; `<leader>t*` mappings
+-- keywords: tests, testing, pytest, gtest, googletest, run, debug
 return {
     "nvim-neotest/neotest",
     dependencies = {

@@ -1,3 +1,5 @@
+-- LuaSnip: snippet engine, loads friendly-snippets from VSCode format; jump c-k/c-j, c-l choices
+-- keywords: snippets, snippet, expand, templates, edit
 return {
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",

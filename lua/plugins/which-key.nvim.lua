@@ -1,4 +1,5 @@
---------------- Key maps--------------------------------
+-- which-key.nvim: popup showing keybindings; used to declare almost all leader mappings
+-- keywords: keymap, mapping, shortcut, leader, help, ui
 return {
     'folke/which-key.nvim',
     config = function()

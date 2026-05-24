@@ -1,3 +1,5 @@
+-- nvim-lspconfig: presets for LSP servers; clangd, cmake, texlab, pyright, lua_ls, rust_analyzer enabled here
+-- keywords: lsp, language-server, clangd, pyright, lua_ls, rust-analyzer, texlab, cmake
 return {
     "neovim/nvim-lspconfig",
     config = function()

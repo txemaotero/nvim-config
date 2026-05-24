@@ -1,3 +1,5 @@
+-- neorg: org-mode-like notes in .norg format; workspaces, GTD, telescope integration; `<leader>n*` mappings
+-- keywords: notes, org, norg, gtd, tasks, workspace, writing
 local has_local_config, local_config = pcall(require, "neorg_local_config")
 local workspaces = {}
 if has_local_config then

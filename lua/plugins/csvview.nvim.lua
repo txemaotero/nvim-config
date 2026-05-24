@@ -1,3 +1,5 @@
+-- csvview.nvim: spreadsheet-like view of CSV files (:CsvViewToggle)
+-- keywords: csv, table, spreadsheet, columns, data
 return {
     "hat0uma/csvview.nvim",
     ---@module "csvview"

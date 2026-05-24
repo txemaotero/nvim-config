@@ -1,3 +1,5 @@
+-- snacks.nvim: utility collection; active modules: bigfile, input, notifier (vim.notify), quickfile, statuscolumn, terminal, zen
+-- keywords: utility, qol, bigfile, notify, terminal, zen, statuscolumn, ui
 return {
     "folke/snacks.nvim",
     priority = 1000,

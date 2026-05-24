@@ -1,3 +1,5 @@
+-- oil.nvim: edit your filesystem like a buffer (`-` opens explorer); custom sort keymaps gs*
+-- keywords: explorer, files, directory, filesystem, edit, browse
 return {
     'stevearc/oil.nvim',
     lazy = false,

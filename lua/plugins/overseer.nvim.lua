@@ -1,3 +1,5 @@
+-- overseer.nvim: task runner (build/test/custom); `<leader>o*` mappings + OverseerRestartLast/OpenLastOutput
+-- keywords: task, runner, build, jobs, async, terminal
 return {
     'stevearc/overseer.nvim',
     config = function()

@@ -1,3 +1,5 @@
+-- formatter.nvim: run code formatters (:Format, :FormatWrite). Configured for lua/python/css/js/html/c/cpp/cmake
+-- keywords: format, stylua, black, prettier, clang-format, cmake-format
 return {
     "mhartington/formatter.nvim",
     config = function()

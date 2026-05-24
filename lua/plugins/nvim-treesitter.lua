@@ -1,3 +1,5 @@
+-- nvim-treesitter: syntax highlighting + textobjects via tree-sitter; ensures all parsers installed
+-- keywords: treesitter, syntax, highlight, parser, ast, ts
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

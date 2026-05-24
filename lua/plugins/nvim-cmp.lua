@@ -1,3 +1,5 @@
+-- nvim-cmp: completion engine; sources: lsp, buffer, path, cmdline, lua, luasnip; integrates with lspkind + autopairs
+-- keywords: completion, autocomplete, cmp, intellisense, suggest
 return {
     "hrsh7th/nvim-cmp",
     dependencies = {

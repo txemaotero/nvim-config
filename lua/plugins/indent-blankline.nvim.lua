@@ -1,4 +1,5 @@
--- Indent guides
+-- indent-blankline.nvim (ibl): indent guides with rainbow colors per level
+-- keywords: indent, guides, rainbow, lines, ui
 return {
     'lukas-reineke/indent-blankline.nvim',
     enabled=true,

@@ -1,3 +1,5 @@
+-- nvim-dap: Debug Adapter Protocol client (dap-ui + dap-python + osv for Lua); `<leader>d*` and F4-F10 mappings
+-- keywords: debug, debugger, dap, breakpoint, step, python, cpp, lua, osv
 return {
     'mfussenegger/nvim-dap',
     dependencies = {
