@@ -7,8 +7,10 @@ return {
         dashboard = { enabled = false },
         image = { enabled = false },
         input = { enabled = true },
+        notifier = { enabled = true, timeout = 3000 },
         quickfile = { enabled = true },
         statuscolumn = { enabled = true },
+        terminal = { enabled = true },
         zen = {
             enabled = true,
             toggles = {

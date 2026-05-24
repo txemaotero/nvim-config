@@ -3,7 +3,6 @@ return {
     "ralismark/opsort.vim", -- Allows sorting by values of lines
     "junegunn/vim-easy-align", -- Align text with ga
     { "kylechui/nvim-surround", config = true }, -- Change surround cs
-    { "numToStr/Comment.nvim", config = true }, -- Comments
     "tpope/vim-repeat", -- Better repeat
     "tpope/vim-abolish", -- Better substitutions: Subvert
     { "windwp/nvim-autopairs", config = true }, -- Autoclose parenthesis
@@ -52,8 +51,6 @@ return {
         cmd = "Trouble",
     },
 
-    "ryanoasis/vim-devicons", -- Icons
-    "stevearc/dressing.nvim", -- Fancy input boxes
     -- See #AAAAAA colors
     {
         "uga-rosa/ccc.nvim",
@@ -77,15 +74,6 @@ return {
         ft = { "markdown" },
     },
     {
-        'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown',
-        enabled = false,
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    },
-    {
         'dhruvasagar/vim-table-mode'
     },
 
@@ -95,16 +83,4 @@ return {
         config = true,
         ft = { "qf" },
     },
-
-    {
-        "github/copilot.vim",
-        enabled = false,
-        config = function()
-            vim.g.copilot_filetypes = {
-                markdown = false,
-                norg = false,
-            }
-        end
-
-    }
 }

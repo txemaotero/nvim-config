@@ -9,7 +9,7 @@ return {
             build = 'make'
         },
         {
-            dir = os.getenv("HOME") .. "/repos/telescope-cppman.nvim",
+            "txemaotero/telescope-cppman.nvim",
             config = function ()
                 vim.api.nvim_create_autocmd("FileType", {
                     pattern = {"cpp"},

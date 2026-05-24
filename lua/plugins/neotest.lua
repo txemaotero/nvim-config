@@ -6,7 +6,6 @@ return {
         "nvim-neotest/neotest-python",
         "nvim-neotest/nvim-nio",
         "alfaix/neotest-gtest",
-        "antoinemadec/FixCursorHold.nvim"
     },
     config = function()
         require("neotest-gtest").setup({

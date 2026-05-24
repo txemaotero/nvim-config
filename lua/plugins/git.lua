@@ -2,15 +2,12 @@
 return {
     -- Git commands
     'tpope/vim-fugitive',
-    -- Git commit browser (:GV)
-    'junegunn/gv.vim',
 
     {
-        dir = os.getenv("HOME") .. "/repos/txema_neogit",
+        "txemaotero/neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
             "sindrets/diffview.nvim",        -- optional - Diff integration
-            -- Only one of these is needed, not both.
             "nvim-telescope/telescope.nvim", -- optional
         },
         opts = {
@@ -24,10 +21,5 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         config = true,
-    },
-    -- Shows git commits under the cursor (leader gm)
-    {
-        'rhysd/git-messenger.vim',
-        lazy = true,
     },
 }

@@ -4,8 +4,6 @@ return {
     enabled = true,
     dependencies = {
         'nvim-treesitter/nvim-treesitter-context',
-        'nvim-treesitter/playground',
-        'p00f/nvim-ts-rainbow'
     },
     config = function()
         require("nvim-treesitter.install").compilers = { "clang" }

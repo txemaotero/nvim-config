@@ -1,9 +1,5 @@
 return {
     'xiyaowong/transparent.nvim',
-    dependencies = {
-        'akinsho/bufferline.nvim',
-        'stevearc/dressing.nvim',
-    },
     lazy = false,
     priority = 1000,
     enabled = function()
@@ -18,10 +14,6 @@ return {
                 "TelescopePromptBorder",
                 "TelescopePromptTitle",
 
-                "NvimTreeNormal",
-                "GvimTreeNormalNC",
-                "NvimTreeWinSeparator",
-
                 "Pmenu",
                 "PmenuThumb",
                 "CmpPmenuBorder",
@@ -32,27 +24,6 @@ return {
                 "WhichKeyNormal",
                 "WhichKeyTitle",
                 "LspFloatWinNormal",
-
-                "BufferLineTabClose",
-                "BufferlineBufferSelected",
-                "BufferLineFill",
-                "BufferLineBackground",
-                "BufferLineSeparator",
-                "BufferLineIndicatorSelected",
-
-                "NotifyINFOBody",
-                "NotifyINFOBody14",
-                "NotifyWARNBody",
-                "NotifyERRORBody",
-                "NotifyDEBUGBody",
-                "NotifyTRACEBody",
-
-                "NotifyINFOBorder",
-                "NotifyWARNBorder",
-                "NotifyERRORBorder",
-                "NotifyDEBUGBorder",
-                "NotifyTRACEBorder",
-                "NotifyTRACEBorder6",
 
                 "DiagnosticVirtualTextError",
                 "DiagnosticVirtualTextWarn",
@@ -66,11 +37,8 @@ return {
 
                 "FloatBorder",
                 "FloatShadow",
-                -- "FloatTitle",
                 "FloatShadowThrough",
-
         })
         vim.g.transparent_enabled = true
     end,
 }
-
