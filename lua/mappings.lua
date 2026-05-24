@@ -232,6 +232,10 @@ wk.add(
         { "<leader>il",    "<cmd>Trouble loclist toggle<cr>",                                                    desc = "Loclist" },
         { "<leader>iq",    "<cmd>Trouble qflist toggle<cr>",                                                     desc = "Quickfix" },
         { "<leader>ir",    "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",                         desc = "Symbol references" },
+        { "<leader>iv",    function()
+            local current = vim.diagnostic.config().virtual_lines
+            vim.diagnostic.config({ virtual_lines = not current, virtual_text = current })
+        end,                                                                                                    desc = "Toggle virtual_lines" },
         { "<leader>l",     group = "LSP" },
         { "<leader>l=",    desc = "Format range" },
         { "<leader>lD",    desc = "Diagnostics" },

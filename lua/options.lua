@@ -1,7 +1,6 @@
 -- Leader to space
 vim.g.mapleader = " "
 vim.g.python3_host_prog = os.getenv("HOME") .. "/.local/share/nvim/pyenv/bin/python"
--- vim.opt.clipboard = "unnamedplus"
 vim.opt.pumblend = 0
 
 -- load config file per project
@@ -20,22 +19,23 @@ vim.opt.termguicolors = true
 
 -- Undo persist
 vim.opt.undofile = true
-if vim.fn.has('win32') == 1 then
+if vim.fn.has("win32") == 1 then
     vim.opt.undodir = os.getenv("UserProfile") .. "/.nvim/undodir"
 else
     vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 end
 
--- Spell and text related
-vim.opt.spelllang = {"en", "es", "gl"}
-vim.opt.spellsuggest = {"best", 9}
-vim.opt.spell = true
+-- Spell: off by default, enabled per FileType below
+vim.opt.spell = false
+vim.opt.spelllang = { "en", "es", "gl" }
+vim.opt.spellsuggest = { "best", 9 }
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"text", "tex", "markdown", "vimwiki", "norg"},
+    pattern = { "text", "tex", "markdown", "vimwiki", "norg" },
     callback = function()
+        vim.opt_local.spell = true
         vim.opt_local.tw = 80
         vim.opt_local.conceallevel = 2
-        vim.cmd[[hi! SpellBad guifg=#9c3838]]
+        vim.cmd([[hi! SpellBad guifg=#9c3838]])
     end,
 })
 
@@ -67,13 +67,13 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- Disable netrw to use Oil
-vim.g.loaded_netrw       = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Disable perl
 vim.g.loaded_perl_provider = 0
 
-vim.diagnostic.enable = true
 vim.diagnostic.config({
     virtual_text = true,
+    virtual_lines = false, -- toggled via <leader>iv (see mappings.lua)
 })
